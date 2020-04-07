@@ -1,0 +1,6 @@
+*.log
+GitStatus_*.txt
+GitCommit_*.bat
+node_modules/
+bundle.js
+HabitTracker/tests/Test*
