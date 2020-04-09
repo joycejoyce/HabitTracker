@@ -1,12 +1,15 @@
 const HTML_CLASS = {
-    otherMonthDate: "other-month-date",
+    prevMonthDate: "prev-month-date",
+    nextMonthDate: "next-month-date",
     currentMonthDate: "current-month-date",
-    daysOfWeek: "days-of-week"
+    daysOfWeek: "days-of-week",
+    month: "month"
 };
 
 const HTML_TAG_NAME = {
     tr: "tr",
-    td: "td"
+    td: "td",
+    table: "table"
 };
 
 const HTML_PROPERTY = {

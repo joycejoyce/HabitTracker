@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <table class="month">
+        <!--<table class="month">
             <tr class="days-of-week">
                 <td>Sun</td>
                 <td>Mon</td>
@@ -17,9 +17,9 @@
                 <td>Sat</td>
             </tr>
             <tr>
-                <td class="other-month-date">29</td>
-                <td class="other-month-date">30</td>
-                <td class="other-month-date">31</td>
+                <td class="prev-month-date">29</td>
+                <td class="prev-month-date">30</td>
+                <td class="prev-month-date">31</td>
                 <td class="current-month-date">1</td>
                 <td class="current-month-date">2</td>
                 <td class="current-month-date">3</td>
@@ -58,24 +58,32 @@
                 <td class="current-month-date">28</td>
                 <td class="current-month-date">29</td>
                 <td class="current-month-date">30</td>
-                <td class="other-month-date">1</td>
-                <td class="other-month-date">2</td>
+                <td class="next-month-date">1</td>
+                <td class="next-month-date">2</td>
             </tr>
             <tr>
-                <td class="other-month-date">3</td>
-                <td class="other-month-date">4</td>
-                <td class="other-month-date">5</td>
-                <td class="other-month-date">6</td>
-                <td class="other-month-date">7</td>
-                <td class="other-month-date">8</td>
-                <td class="other-month-date">9</td>
+                <td class="next-month-date">3</td>
+                <td class="next-month-date">4</td>
+                <td class="next-month-date">5</td>
+                <td class="next-month-date">6</td>
+                <td class="next-month-date">7</td>
+                <td class="next-month-date">8</td>
+                <td class="next-month-date">9</td>
             </tr>
-        </table>
-        <!--<script type="module">
-            import {a} from "./scripts/src/main.js";
+        </table>-->
+        <script type="module">
+            import {Calendar, CALENDAR_TYPE} from "./scripts/src/calendars/calendar.js";
             $(document).ready(function() {
-                console.log("(main)a = " + a);
+                const dateObj = {
+                    year: 2020,
+                    month: 2,
+                    locale: "ja-JP"
+                    //locale: "zh-TW"
+                };
+                const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.monthly);
+                const dom = calendar.getDom();
+                $("body").append(dom);
             });
-        </script>-->
+        </script>
     </body>
 </html>

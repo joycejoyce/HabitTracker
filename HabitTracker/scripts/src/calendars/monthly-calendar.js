@@ -1,15 +1,26 @@
 import {DomGenerator} from "../dom-generator.js";
 import {HTML_CLASS, HTML_PROPERTY, HTML_TAG_NAME} from "../html-properties.js";
 
-function MonthlyCalendar(inputDateObj) {    
+function MonthlyCalendar(inputDateObj) {
+    const currentLocale = inputDateObj.locale;
+    const currentYear = inputDateObj.year;
+    const currentMonth = inputDateObj.month - 1;
+    
     this.getDom = function() {
         const daysOfWeekDom = getDaysOfWeekDom();
         const weekDoms = getWeekDoms();
-    };
-    
-    function getWeekDoms() {
         
-    }
+        const tableData = getTableData(daysOfWeekDom, weekDoms);
+        
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.table,
+                [HTML_PROPERTY.className]: HTML_CLASS.month
+            }, tableData
+        );
+        
+        return dom;
+    };
     
     function getDaysOfWeekDom() {
         const daysOfWeek = getDaysOfWeek();
@@ -45,15 +56,102 @@ function MonthlyCalendar(inputDateObj) {
             "2020-04-11"
         ];
         const options = { weekday: "short" };
-        const locale = inputDateObj.locale;
         let daysOfWeek = fromSundayToSaturday.reduce((ary, date) => {
             const dateObj = new Date(date);
-            const day = dateObj.toLocaleDateString(locale, options);
+            const tmpDay = dateObj.toLocaleDateString(currentLocale, options);
+            const day = removeUnwantedCharacter(tmpDay);
             ary.push(day);
             return ary;
         }, []);
         
         return daysOfWeek;
+    }
+    
+    function removeUnwantedCharacter(tmpDay) {
+        const unwantedCharacter = "週";　
+        return tmpDay.replace(unwantedCharacter, "");
+    }
+    
+    function getWeekDoms() {
+        const dateDoms = getDateDoms();
+        
+        let oneWeekDateDoms = [];
+        const weekDoms = dateDoms.reduce((result, dateDom) => {
+            oneWeekDateDoms.push(dateDom);
+            if(oneWeekDateDoms.length == 7) {
+                const dom = DomGenerator.generateDOMWithChildren(
+                    {
+                        [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr
+                    }, oneWeekDateDoms
+                );
+                result.push(dom);
+                
+                oneWeekDateDoms = [];
+            }
+            return result;
+        }, []);
+        
+        return weekDoms;
+    }
+    
+    function getDateDoms() {
+        const tmpDateObj = getFirstDateOfCalendar();
+        const totalDaysInCalendar = 42;
+        let doms = [];
+        for(let i=0; i<totalDaysInCalendar; i++) {            
+            let htmlClass;
+            const monthDiff = currentMonth - tmpDateObj.getMonth();
+            switch(monthDiff) {
+                case 1:
+                    htmlClass = HTML_CLASS.prevMonthDate;
+                    break;
+                case 0:
+                    htmlClass = HTML_CLASS.currentMonthDate;
+                    break;
+                case -1:
+                    htmlClass = HTML_CLASS.nextMonthDate;
+                    break;
+                default:
+                    throw `Unexpected month number = ${tmpDateObj.getMonth()} (currentMonth number = ${currentMonth})`;
+                    return;
+            }
+            
+            const dom = DomGenerator.generateDOMWithChildren(
+                {
+                    [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
+                    [HTML_PROPERTY.className]: htmlClass,
+                }, []
+            );
+            dom.innerHTML = tmpDateObj.getDate();
+            
+            doms.push(dom);
+            
+            tmpDateObj.setDate(tmpDateObj.getDate() + 1);
+        }
+        
+        return doms;
+    }
+    
+    function getFirstDateOfCalendar() {
+        const dateObj = getFirstDateObjOfCurrentMonth();
+        const dayDiff = dateObj.getDay();
+        dateObj.setDate(dateObj.getDate() - dayDiff);
+        //console.log(`first date = ${dateObj.getDate()}`);
+        return dateObj;
+    }
+    
+    function getFirstDateObjOfCurrentMonth() {
+        const dateObj = new Date(currentYear, currentMonth, 1);
+        
+        return dateObj;
+    }
+    
+    function getTableData(dom, doms) {
+        let data = [dom];
+        data.push(doms);
+        data = data.flat();
+        
+        return data;
     }
 }
 

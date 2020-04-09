@@ -6,6 +6,6 @@
     color: blue;
 }
 
-.other-month-date {
+.prev-month-date,.next-month-date {
     color: lightgray;
 }
