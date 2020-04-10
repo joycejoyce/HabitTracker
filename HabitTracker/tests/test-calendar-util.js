@@ -47,6 +47,9 @@ describe(`(MonthlyCalendar)getDom()`, function() {
 })
 
 function checkMonthlyCalendarDom(dom) {
+    const numOfMonthName = dom.getElementsByClassName(HTML_CLASS.monthName).length;
+    expect(numOfMonthName).to.eql(1);
+    
     const numOfPrevMonthDate = dom.getElementsByClassName(HTML_CLASS.prevMonthDate).length;
     expect(numOfPrevMonthDate).to.eql(3);
     
@@ -57,7 +60,7 @@ function checkMonthlyCalendarDom(dom) {
     expect(numOfCurrentMonthDate).to.eql(30);
     
     const numOfTableRow = dom.getElementsByTagName(HTML_TAG_NAME.tr).length;
-    expect(numOfTableRow).to.eql(7);
+    expect(numOfTableRow).to.eql(8);
 }
 
 describe(`(MonthlyCalendar)getDom() (with different locales)`, function() {
@@ -122,12 +125,16 @@ describe(`(YearlyCalendar)getDom()`, function() {
 })
 
 function checkYearlyCalendarDom(dom) {
+    const numOfClassYear = $(dom).find("."+HTML_CLASS.year).length;
+    expect(numOfClassYear).to.eql(1);
+    
     const numOfClassMonth = $(dom).find("."+HTML_CLASS.month).length;
     expect(numOfClassMonth).to.eql(12);
     
     const numOfCurrentMonthDate = $(dom).find("."+HTML_CLASS.currentMonthDate).length;
-    expect(numOfCurrentMonthDate).to.eql(365);
+    expect(numOfCurrentMonthDate).to.eql(366);
     
-    const numOfAllDate = $(dom).find("regex(class, .*-date-month)").length;
+    const numOfAllDate = $(dom).find(`td[class$="-month-date"]`).length
+    
     expect(numOfAllDate).to.eql(504);
 }

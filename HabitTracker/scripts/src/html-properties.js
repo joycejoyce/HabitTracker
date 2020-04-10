@@ -3,18 +3,25 @@ const HTML_CLASS = {
     nextMonthDate: "next-month-date",
     currentMonthDate: "current-month-date",
     daysOfWeek: "days-of-week",
-    month: "month"
+    month: "month",
+    monthName: "month-name",
+    year: "year",
+    months: "months",
+    yearNumber: "year-number"
 };
 
 const HTML_TAG_NAME = {
     tr: "tr",
     td: "td",
-    table: "table"
+    table: "table",
+    div: "div"
 };
 
 const HTML_PROPERTY = {
     tagName: "tagName",
-    className: "className"
+    className: "className",
+    innerHTML: "innerHTML",
+    colSpan: "colSpan"
 }
 
 export {

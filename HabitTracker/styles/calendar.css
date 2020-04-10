@@ -9,3 +9,36 @@
 .prev-month-date,.next-month-date {
     color: lightgray;
 }
+
+.month-name {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+td {
+    text-align: center;
+}
+
+.year-number {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.year {
+    display: grid;
+    grid-template-columns: 1;
+    text-align: center;
+    width: 1000px;
+}
+
+.months {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+.month {
+    border: solid;
+}

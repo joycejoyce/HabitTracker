@@ -1,5 +1,6 @@
 import {MonthlyCalendar} from "./monthly-calendar.js";
 import {YearlyCalendar} from "./yearly-calendar.js";
+
 function Calendar() {
     this.getCalendar = function(dateObj, type) {
         switch(type) {

@@ -7,10 +7,11 @@ function MonthlyCalendar(inputDateObj) {
     const currentMonth = inputDateObj.month - 1;
     
     this.getDom = function() {
+        const monthNameDom = getMonthNameDom();
         const daysOfWeekDom = getDaysOfWeekDom();
         const weekDoms = getWeekDoms();
         
-        const tableData = getTableData(daysOfWeekDom, weekDoms);
+        const tableData = DomGenerator.getFlattenAry([monthNameDom, daysOfWeekDom, weekDoms]);
         
         const dom = DomGenerator.generateDOMWithChildren(
             {
@@ -18,9 +19,42 @@ function MonthlyCalendar(inputDateObj) {
                 [HTML_PROPERTY.className]: HTML_CLASS.month
             }, tableData
         );
-        
+        //console.log(`final dom = ${dom.outerHTML}`);
         return dom;
     };
+    
+    function getMonthNameDom() {
+        const dataDom = getMonthNameDataDom();
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr,
+            }, [dataDom]
+        );
+        
+        return dom;
+    }
+    
+    function getMonthNameDataDom() {
+        const monthName = getMonthName();
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
+                [HTML_PROPERTY.className]: HTML_CLASS.monthName,
+                [HTML_PROPERTY.innerHTML]: monthName,
+                [HTML_PROPERTY.colSpan]: 7
+            }, []
+        );
+        
+        return dom;
+    }
+    
+    function getMonthName() {
+        const dateObj = new Date(currentYear, currentMonth, 1);
+        const options = { month: "long" };
+        const monthName = dateObj.toLocaleDateString(currentLocale, options);
+        
+        return monthName;
+    }
     
     function getDaysOfWeekDom() {
         const daysOfWeek = getDaysOfWeek();
@@ -98,21 +132,22 @@ function MonthlyCalendar(inputDateObj) {
         const tmpDateObj = getFirstDateOfCalendar();
         const totalDaysInCalendar = 42;
         let doms = [];
-        for(let i=0; i<totalDaysInCalendar; i++) {            
+        for(let i=0; i<totalDaysInCalendar; i++) {
             let htmlClass;
-            const monthDiff = currentMonth - tmpDateObj.getMonth();
+            const relativeMonth = getRelativeMonth(tmpDateObj);
+            const monthDiff = relativeMonth - currentMonth;
             switch(monthDiff) {
-                case 1:
+                case -1:
                     htmlClass = HTML_CLASS.prevMonthDate;
                     break;
                 case 0:
                     htmlClass = HTML_CLASS.currentMonthDate;
                     break;
-                case -1:
+                case 1:
                     htmlClass = HTML_CLASS.nextMonthDate;
                     break;
                 default:
-                    throw `Unexpected month number = ${tmpDateObj.getMonth()} (currentMonth number = ${currentMonth})`;
+                    throw `Unexpect monthDiff(${monthDiff}) = currentMonth(${currentMonth}) - tmpYear(${relativeMonth})`;
                     return;
             }
             
@@ -146,12 +181,22 @@ function MonthlyCalendar(inputDateObj) {
         return dateObj;
     }
     
-    function getTableData(dom, doms) {
-        let data = [dom];
-        data.push(doms);
-        data = data.flat();
-        
-        return data;
+    function getRelativeMonth(dateObj) {
+        const yearDiff = dateObj.getFullYear() - currentYear;
+        switch(yearDiff) {
+            case -1:
+                return dateObj.getMonth() - 12;
+                break;
+            case 0:
+                return dateObj.getMonth()
+                break;
+            case 1:
+                return dateObj.getMonth() + 12;
+                break;
+            default:
+                throw `Unexpect yearDiff(${yearDiff}) = tmpYear(${dateObj.getYear()}) - currentYear(${currentYear})`
+                break;
+        }
     }
 }
 

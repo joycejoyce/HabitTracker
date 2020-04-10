@@ -14,6 +14,16 @@ DomGenerator.generateDOMWithChildren = function(domProperties, children) {
     return dom;
 };
 
+DomGenerator.getFlattenAry = function(twoDAry) {
+    const ary = twoDAry.reduce((result, item) => {
+        result.push(item);
+        result = result.flat();
+        return result;
+    }, []);
+
+    return ary;
+}
+
 export {
     DomGenerator
 };
