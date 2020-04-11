@@ -71,8 +71,13 @@ function MonthlyCalendar(inputDateObj) {
     
     function getDayDoms(daysOfWeek) {
         const doms = daysOfWeek.map(day => {
-            const dom = document.createElement(HTML_TAG_NAME.td);
-            dom.innerHTML = day;
+            const dom = DomGenerator.generateDOMWithChildren(
+                {
+                    [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
+                    [HTML_PROPERTY.innerHTML]: day
+                }, []
+            );
+            
             return dom;
         });
         
@@ -151,13 +156,14 @@ function MonthlyCalendar(inputDateObj) {
                     return;
             }
             
+            const dateNumberDom = getDateNumberDom(tmpDateObj.getDate());
             const dom = DomGenerator.generateDOMWithChildren(
                 {
                     [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
-                    [HTML_PROPERTY.className]: htmlClass,
-                }, []
+                    [HTML_PROPERTY.className]: htmlClass
+                }, [dateNumberDom]
             );
-            dom.innerHTML = tmpDateObj.getDate();
+            //dom.innerHTML = tmpDateObj.getDate();
             
             doms.push(dom);
             
@@ -197,6 +203,18 @@ function MonthlyCalendar(inputDateObj) {
                 throw `Unexpect yearDiff(${yearDiff}) = tmpYear(${dateObj.getYear()}) - currentYear(${currentYear})`
                 break;
         }
+    }
+    
+    function getDateNumberDom(dateNumber) {
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.innerHTML]: dateNumber,
+                [HTML_PROPERTY.className]: HTML_CLASS.dateNumber
+            }, []
+        );
+        
+        return dom;
     }
 }
 

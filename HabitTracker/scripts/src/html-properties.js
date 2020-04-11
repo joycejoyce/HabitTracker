@@ -7,14 +7,16 @@ const HTML_CLASS = {
     monthName: "month-name",
     year: "year",
     months: "months",
-    yearNumber: "year-number"
+    yearNumber: "year-number",
+    dateNumber: "date-number"
 };
 
 const HTML_TAG_NAME = {
     tr: "tr",
     td: "td",
     table: "table",
-    div: "div"
+    div: "div",
+    span: "span"
 };
 
 const HTML_PROPERTY = {

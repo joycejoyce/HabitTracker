@@ -125,8 +125,8 @@ describe(`(YearlyCalendar)getDom()`, function() {
 })
 
 function checkYearlyCalendarDom(dom) {
-    const numOfClassYear = $(dom).find("."+HTML_CLASS.year).length;
-    expect(numOfClassYear).to.eql(1);
+    const numOfClassYearNumber = $(dom).find("."+HTML_CLASS.yearNumber).length;
+    expect(numOfClassYearNumber).to.eql(1);
     
     const numOfClassMonth = $(dom).find("."+HTML_CLASS.month).length;
     expect(numOfClassMonth).to.eql(12);

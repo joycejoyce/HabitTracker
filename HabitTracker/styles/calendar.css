@@ -10,6 +10,19 @@
     color: lightgray;
 }
 
+.current-month-date, .prev-month-date,.next-month-date {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+}
+
+.date-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
 .month-name {
     text-align: center;
     font-size: x-large;

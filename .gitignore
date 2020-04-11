@@ -6,3 +6,4 @@ bundle.js
 HabitTracker/tests/Test*
 *.pptx
 *.txt
+dynamodb_local_latest/
