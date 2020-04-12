@@ -8,7 +8,8 @@ const HTML_CLASS = {
     year: "year",
     months: "months",
     yearNumber: "year-number",
-    dateNumber: "date-number"
+    dateNumber: "date-number",
+    yearAndMonth: "year-and-month"
 };
 
 const HTML_TAG_NAME = {

@@ -1,5 +1,5 @@
 import {MonthlyCalendar} from "./monthly-calendar.js";
-import {YearlyCalendar} from "./yearly-calendar.js";
+//import {YearlyCalendar} from "./yearly-calendar.js";
 
 function Calendar() {
     this.getCalendar = function(dateObj, type) {
@@ -7,9 +7,9 @@ function Calendar() {
             case CALENDAR_TYPE.monthly:
                 return new MonthlyCalendar(dateObj);
                 break;
-            case CALENDAR_TYPE.yearly:
+            /*case CALENDAR_TYPE.yearly:
                 return new YearlyCalendar(dateObj);
-                break;
+                break;*/
             default:
                 throw `Invalid calendar type: [${type}]`;
                 break;
@@ -22,7 +22,23 @@ const CALENDAR_TYPE = {
     yearly: "yearly"
 };
 
+const LOCALE = {
+    english: "en-US",
+    french: "fr-FR",
+    japanese: "ja-JP",
+    chinese: "zh-TW",
+    danish: "da-DK",
+    german: "de-DE",
+    spanish: "es-ES",
+    portuguese: "pt-BR",
+    italian: "it-IT",
+    dutch: "nl-NL",
+    korean: "ko-KR",
+    swedish: "sv-SE"
+};
+
 export {
     Calendar,
-    CALENDAR_TYPE
+    CALENDAR_TYPE,
+    LOCALE
 };

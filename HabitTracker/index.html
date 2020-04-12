@@ -7,31 +7,16 @@
     </head>
     <body>
         <script type="module">
-            import {Calendar, CALENDAR_TYPE} from "./scripts/src/calendars/calendar.js";
+            import {Calendar, CALENDAR_TYPE, LOCALE} from "./scripts/src/calendars/calendar.js";
             
             $(document).ready(function() {
-                const LANGUAGES = {
-                    english: "en-US",
-                    french: "fr-FR",
-                    japanese: "ja-JP",
-                    chinese: "zh-TW",
-                    danish: "da-DK",
-                    german: "de-DE",
-                    spanish: "es-ES",
-                    portuguese: "pt-BR",
-                    italian: "it-IT",
-                    dutch: "nl-NL",
-                    korean: "ko-KR",
-                    swedish: "sv-SE"
-                }
-                
                 const dateObj = {
                     year: 2020,
                     month: 2,
-                    locale: LANGUAGES.english
+                    locale: LOCALE.english
                 };
-                //const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.monthly);
-                const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.yearly);
+                const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.monthly);
+                //const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.yearly);
                 const dom = calendar.getDom();
                 $("body").append(dom);
             });

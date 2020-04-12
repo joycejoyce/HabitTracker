@@ -1,57 +1,7 @@
-.days-of-week {
-    font-weight: bold;
-}
-
-.current-month-date {
-    color: blue;
-}
-
-.prev-month-date,.next-month-date {
-    color: lightgray;
-}
-
-.current-month-date, .prev-month-date,.next-month-date {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border: 1px solid red;
-}
-
-.date-number {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-}
-
-.month-name {
-    text-align: center;
-    font-size: x-large;
-    font-weight: bold;
-}
-
-td {
+.year-and-month {
     text-align: center;
 }
 
-.year-number {
-    font-size: xx-large;
-    font-weight: bold;
-}
-
-.year {
-    display: grid;
-    grid-template-columns: 1;
-    text-align: center;
-    width: 1000px;
-}
-
-.months {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-}
-
-.month {
-    border: solid;
+.prev-month-date, .next-month-date {
+    color: gainsboro;
 }

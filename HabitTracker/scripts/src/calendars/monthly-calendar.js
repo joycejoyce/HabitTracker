@@ -7,11 +7,11 @@ function MonthlyCalendar(inputDateObj) {
     const currentMonth = inputDateObj.month - 1;
     
     this.getDom = function() {
-        const monthNameDom = getMonthNameDom();
+        const yearAndMonthDom = getYearAndMonthDom();
         const daysOfWeekDom = getDaysOfWeekDom();
         const weekDoms = getWeekDoms();
         
-        const tableData = DomGenerator.getFlattenAry([monthNameDom, daysOfWeekDom, weekDoms]);
+        const tableData = DomGenerator.getFlattenAry([yearAndMonthDom, daysOfWeekDom, weekDoms]);
         
         const dom = DomGenerator.generateDOMWithChildren(
             {
@@ -23,28 +23,54 @@ function MonthlyCalendar(inputDateObj) {
         return dom;
     };
     
-    function getMonthNameDom() {
-        const dataDom = getMonthNameDataDom();
+    function getYearAndMonthDom() {
+        const dataDom = getYearAndMonthDataDom();
         const dom = DomGenerator.generateDOMWithChildren(
             {
-                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr,
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr
             }, [dataDom]
         );
-        
+        console.log(`yearAndMonthDom=${dom.outerHTML}`);
         return dom;
     }
     
-    function getMonthNameDataDom() {
-        const monthName = getMonthName();
+    function getYearAndMonthDataDom() {
+        const yearNumberDom = getYearNumberDom();
+        const monthNameDom = getMonthNameDom();
+        const spaceDom = document.createTextNode(" ");
         const dom = DomGenerator.generateDOMWithChildren(
             {
                 [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
-                [HTML_PROPERTY.className]: HTML_CLASS.monthName,
-                [HTML_PROPERTY.innerHTML]: monthName,
+                [HTML_PROPERTY.className]: HTML_CLASS.yearAndMonth,
                 [HTML_PROPERTY.colSpan]: 7
+            }, [yearNumberDom, spaceDom, monthNameDom]
+        );
+        //console.log(`yearAndMonthDataDom=${dom.outerHTML}`);
+        return dom;
+    }
+    
+    function getYearNumberDom() {
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.className]: HTML_CLASS.yearNumber,
+                [HTML_PROPERTY.innerHTML]: currentYear
             }, []
         );
-        
+        //console.log(`yearNumberDom=${dom.outerHTML}`);
+        return dom;
+    }
+    
+    function getMonthNameDom() {
+        const monthName = getMonthName();
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.className]: HTML_CLASS.monthName,
+                [HTML_PROPERTY.innerHTML]: monthName
+            }, []
+        );
+        //console.log(`monthNameDom=${dom.outerHTML}`);
         return dom;
     }
     
