@@ -30,22 +30,49 @@ function MonthlyCalendar(inputDateObj) {
                 [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr
             }, [dataDom]
         );
-        console.log(`yearAndMonthDom=${dom.outerHTML}`);
+        //console.log(`yearAndMonthDom=${dom.outerHTML}`);
         return dom;
     }
     
     function getYearAndMonthDataDom() {
+        const prevMonthSwitcherDom = getPrevMonthSwitcherDom();
+        const nextMonthSwitcherDom = getNextMonthSwitcherDom();
         const yearNumberDom = getYearNumberDom();
         const monthNameDom = getMonthNameDom();
         const spaceDom = document.createTextNode(" ");
+        const multiSpaceDoms = DomGenerator.generateTextDoms(2, "    ");
         const dom = DomGenerator.generateDOMWithChildren(
             {
                 [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
                 [HTML_PROPERTY.className]: HTML_CLASS.yearAndMonth,
                 [HTML_PROPERTY.colSpan]: 7
-            }, [yearNumberDom, spaceDom, monthNameDom]
+            }, [prevMonthSwitcherDom, multiSpaceDoms[0], yearNumberDom, spaceDom, monthNameDom, multiSpaceDoms[1], nextMonthSwitcherDom]
         );
         //console.log(`yearAndMonthDataDom=${dom.outerHTML}`);
+        return dom;
+    }
+    
+    function getPrevMonthSwitcherDom() {
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.className]: HTML_CLASS.prevMonthSwitcher,
+                [HTML_PROPERTY.innerHTML]: "<"
+            }, []
+        );
+        //console.log(`prevMonthSwitcherDom=${dom.outerHTML}`);
+        return dom;
+    }
+    
+    function getNextMonthSwitcherDom() {
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.className]: HTML_CLASS.nextMonthSwitcher,
+                [HTML_PROPERTY.innerHTML]: ">"
+            }, []
+        );
+        //console.log(`nextMonthSwitcherDom=${dom.outerHTML}`);
         return dom;
     }
     
@@ -189,7 +216,6 @@ function MonthlyCalendar(inputDateObj) {
                     [HTML_PROPERTY.className]: htmlClass
                 }, [dateNumberDom]
             );
-            //dom.innerHTML = tmpDateObj.getDate();
             
             doms.push(dom);
             
@@ -241,6 +267,11 @@ function MonthlyCalendar(inputDateObj) {
         );
         
         return dom;
+    }
+    
+    this.addClickEventHandlerToMonthSwitcher = function(dom) {
+        const prevMonthSwitcher = $(dom).find("."+HTML_CLASS.prevMonthSwitcher);
+        
     }
 }
 

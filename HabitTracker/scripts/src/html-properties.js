@@ -9,7 +9,9 @@ const HTML_CLASS = {
     months: "months",
     yearNumber: "year-number",
     dateNumber: "date-number",
-    yearAndMonth: "year-and-month"
+    yearAndMonth: "year-and-month",
+    prevMonthSwitcher: "prev-month-switcher",
+    nextMonthSwitcher: "next-month-switcher"
 };
 
 const HTML_TAG_NAME = {

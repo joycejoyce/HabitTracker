@@ -1,5 +1,6 @@
 .year-and-month {
     text-align: center;
+    white-space: pre;
 }
 
 .prev-month-date, .next-month-date {

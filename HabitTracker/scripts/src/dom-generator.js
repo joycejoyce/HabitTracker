@@ -24,6 +24,16 @@ DomGenerator.getFlattenAry = function(twoDAry) {
     return ary;
 }
 
+DomGenerator.generateTextDoms = function(num, text) {
+    let doms = [];
+    for(let i=0; i<num; i++) {
+        const dom = document.createTextNode(text);
+        doms.push(dom);
+    }
+    
+    return doms;
+};
+
 export {
     DomGenerator
 };
