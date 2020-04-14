@@ -10,13 +10,13 @@
             import {Calendar, CALENDAR_TYPE, LOCALE} from "./scripts/src/calendars/calendar.js";
             
             $(document).ready(function() {
-                const dateObj = {
+                const calendarObj = {
                     year: 2020,
                     month: 12,
                     locale: LOCALE.english
                 };
-                const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.monthly);
-                //const calendar = new Calendar().getCalendar(dateObj, CALENDAR_TYPE.yearly);
+                const calendar = new Calendar().getCalendar(calendarObj, CALENDAR_TYPE.monthly);
+                //const calendar = new Calendar().getCalendar(calendarObj, CALENDAR_TYPE.yearly);
                 const dom = calendar.getDom();
                 $("body").append(dom);
             });

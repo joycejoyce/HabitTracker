@@ -1,10 +1,10 @@
 import {DomGenerator} from "../dom-generator.js";
-import {HTML_CLASS, HTML_PROPERTY, HTML_TAG_NAME} from "../html-properties.js";
+import {HTML_CLASS, HTML_PROPERTY, HTML_TAG_NAME, EVENT} from "../html-properties.js";
 
-function MonthlyCalendar(inputDateObj) {
-    const currentLocale = inputDateObj.locale;
-    const currentYear = inputDateObj.year;
-    const currentMonth = inputDateObj.month - 1;
+function MonthlyCalendar(calendarObj) {
+    const currentYear = calendarObj.year;
+    const currentMonth = calendarObj.month - 1; //JavaScript "Date" object takes 0~11 as month number
+    const currentLocale = calendarObj.locale;
     
     this.getDom = function() {
         const yearAndMonthDom = getYearAndMonthDom();
@@ -20,6 +20,7 @@ function MonthlyCalendar(inputDateObj) {
             }, tableData
         );
         //console.log(`final dom = ${dom.outerHTML}`);
+        this.addClickEventHandlerToMonthSwitcher(dom);
         return dom;
     };
     
@@ -89,7 +90,7 @@ function MonthlyCalendar(inputDateObj) {
     }
     
     function getMonthNameDom() {
-        const monthName = getMonthName();
+        const monthName = MonthlyCalendar.getMonthName(currentYear, currentMonth, currentLocale, MONTH_NAME_OPTION.long);
         const dom = DomGenerator.generateDOMWithChildren(
             {
                 [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
@@ -99,14 +100,6 @@ function MonthlyCalendar(inputDateObj) {
         );
         //console.log(`monthNameDom=${dom.outerHTML}`);
         return dom;
-    }
-    
-    function getMonthName() {
-        const dateObj = new Date(currentYear, currentMonth, 1);
-        const options = { month: "long" };
-        const monthName = dateObj.toLocaleDateString(currentLocale, options);
-        
-        return monthName;
     }
     
     function getDaysOfWeekDom() {
@@ -227,7 +220,7 @@ function MonthlyCalendar(inputDateObj) {
     
     function getFirstDateOfCalendar() {
         const dateObj = getFirstDateObjOfCurrentMonth();
-        const dayDiff = dateObj.getDay();
+        const dayDiff = dateObj.getDay() == 0 ? 7 : dateObj.getDay();
         dateObj.setDate(dateObj.getDate() - dayDiff);
         //console.log(`first date = ${dateObj.getDate()}`);
         return dateObj;
@@ -270,10 +263,61 @@ function MonthlyCalendar(inputDateObj) {
     }
     
     this.addClickEventHandlerToMonthSwitcher = function(dom) {
-        const prevMonthSwitcher = $(dom).find("."+HTML_CLASS.prevMonthSwitcher);
+        addClickEventHandlerToPrevMonthSwitcher(dom);
+        //addClickEventHandlerToNextMonthSwitcher(dom);
+    };
+    
+    function addClickEventHandlerToPrevMonthSwitcher(dom) {
+        const switcher = $(dom).find("."+HTML_CLASS.prevMonthSwitcher);
         
+        $(switcher).on(EVENT.click, function() {
+            const prevMonthDom = getPrevMonthDom();
+            $(dom).prop(HTML_PROPERTY.outerHTML, $(prevMonthDom).prop(HTML_PROPERTY.outerHTML));
+        });
+    }
+    
+    function getPrevMonthDom() {
+        const dateObj = getPrevMonthDateObj();
+        const calendarObj = getCalendarObj(dateObj);
+        const dom = new MonthlyCalendar(calendarObj).getDom();
+        //console.log(`prevMonthDom=${prevMonthDom.outerHTML}`);
+        return dom;
+    }
+    
+    function getPrevMonthDateObj() {
+        const dateObj = new Date(currentYear, currentMonth, 1);
+        dateObj.setMonth(dateObj.getMonth() - 1);
+        //printMonthName(dateObj);
+        return dateObj;
+    }
+    
+    function printMonthName(dateObj) {
+        console.log(`monthName = ${MonthlyCalendar.getMonthName(dateObj.getFullYear(), dateObj.getMonth(), currentLocale, MONTH_NAME_OPTION.long)}`);
+    }
+    
+    function getCalendarObj(dateObj) {
+        const calendarObj = {
+            year: dateObj.getFullYear(),
+            month: dateObj.getMonth() + 1,
+            locale: currentLocale
+        };
+        
+        return calendarObj;
     }
 }
+
+MonthlyCalendar.getMonthName = function(year, month, locale, monthNameOption) {
+    const dateObj = new Date(year, month, 1);
+    const options = { month: monthNameOption };
+    const monthName = dateObj.toLocaleDateString(locale, options);
+
+    return monthName;
+}
+
+const MONTH_NAME_OPTION = {
+    long: "long",
+    short: "short"
+};
 
 export {
     MonthlyCalendar

@@ -26,11 +26,17 @@ const HTML_PROPERTY = {
     tagName: "tagName",
     className: "className",
     innerHTML: "innerHTML",
+    outerHTML: "outerHTML",
     colSpan: "colSpan"
-}
+};
+
+const EVENT = {
+    click: "click"
+};
 
 export {
     HTML_CLASS,
     HTML_TAG_NAME,
-    HTML_PROPERTY
+    HTML_PROPERTY,
+    EVENT
 };
