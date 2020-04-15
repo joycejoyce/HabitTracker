@@ -4,6 +4,7 @@ const HTML_CLASS = {
     currentMonthDate: "current-month-date",
     daysOfWeek: "days-of-week",
     month: "month",
+    monthNumber: "month-number",
     monthName: "month-name",
     year: "year",
     months: "months",
@@ -11,7 +12,8 @@ const HTML_CLASS = {
     dateNumber: "date-number",
     yearAndMonth: "year-and-month",
     prevMonthSwitcher: "prev-month-switcher",
-    nextMonthSwitcher: "next-month-switcher"
+    nextMonthSwitcher: "next-month-switcher",
+    week: "week"
 };
 
 const HTML_TAG_NAME = {

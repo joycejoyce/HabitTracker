@@ -6,3 +6,26 @@
 .prev-month-date, .next-month-date {
     color: gainsboro;
 }
+
+.year-and-month {
+    position: relative;
+}
+
+.prev-month-switcher, .next-month-switcher {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    background-color: pink;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.prev-month-switcher {
+    left: 0px;
+}
+
+.next-month-switcher {
+    right: 0px;
+}

@@ -1,4 +1,4 @@
-import {DomGenerator} from "../dom-generator.js";
+import {DomGenerator, REPLACE_OBJ} from "../dom-generator.js";
 import {HTML_CLASS, HTML_PROPERTY, HTML_TAG_NAME, EVENT} from "../html-properties.js";
 
 function MonthlyCalendar(calendarObj) {
@@ -20,7 +20,7 @@ function MonthlyCalendar(calendarObj) {
             }, tableData
         );
         //console.log(`final dom = ${dom.outerHTML}`);
-        this.addClickEventHandlerToMonthSwitcher(dom);
+        addClickEventHandlerToMonthSwitchers(dom);
         return dom;
     };
     
@@ -39,6 +39,7 @@ function MonthlyCalendar(calendarObj) {
         const prevMonthSwitcherDom = getPrevMonthSwitcherDom();
         const nextMonthSwitcherDom = getNextMonthSwitcherDom();
         const yearNumberDom = getYearNumberDom();
+        const monthNumberDom = getMonthNumberDom();
         const monthNameDom = getMonthNameDom();
         const spaceDom = document.createTextNode(" ");
         const multiSpaceDoms = DomGenerator.generateTextDoms(2, "    ");
@@ -47,8 +48,9 @@ function MonthlyCalendar(calendarObj) {
                 [HTML_PROPERTY.tagName]: HTML_TAG_NAME.td,
                 [HTML_PROPERTY.className]: HTML_CLASS.yearAndMonth,
                 [HTML_PROPERTY.colSpan]: 7
-            }, [prevMonthSwitcherDom, multiSpaceDoms[0], yearNumberDom, spaceDom, monthNameDom, multiSpaceDoms[1], nextMonthSwitcherDom]
+            }, [prevMonthSwitcherDom, multiSpaceDoms[0], yearNumberDom, spaceDom, monthNumberDom, monthNameDom, multiSpaceDoms[1], nextMonthSwitcherDom]
         );
+        $(dom).find("."+HTML_CLASS.monthNumber).hide();
         //console.log(`yearAndMonthDataDom=${dom.outerHTML}`);
         return dom;
     }
@@ -86,6 +88,18 @@ function MonthlyCalendar(calendarObj) {
             }, []
         );
         //console.log(`yearNumberDom=${dom.outerHTML}`);
+        return dom;
+    }
+    
+    function getMonthNumberDom() {
+        const dom = DomGenerator.generateDOMWithChildren(
+            {
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.className]: HTML_CLASS.monthNumber,
+                [HTML_PROPERTY.innerHTML]: currentMonth
+            }, []
+        );
+        
         return dom;
     }
     
@@ -166,7 +180,8 @@ function MonthlyCalendar(calendarObj) {
             if(oneWeekDateDoms.length == 7) {
                 const dom = DomGenerator.generateDOMWithChildren(
                     {
-                        [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr
+                        [HTML_PROPERTY.tagName]: HTML_TAG_NAME.tr,
+                        [HTML_PROPERTY.className]: HTML_CLASS.week
                     }, oneWeekDateDoms
                 );
                 result.push(dom);
@@ -262,47 +277,72 @@ function MonthlyCalendar(calendarObj) {
         return dom;
     }
     
-    this.addClickEventHandlerToMonthSwitcher = function(dom) {
-        addClickEventHandlerToPrevMonthSwitcher(dom);
-        //addClickEventHandlerToNextMonthSwitcher(dom);
-    };
-    
-    function addClickEventHandlerToPrevMonthSwitcher(dom) {
-        const switcher = $(dom).find("."+HTML_CLASS.prevMonthSwitcher);
-        
-        $(switcher).on(EVENT.click, function() {
-            const prevMonthDom = getPrevMonthDom();
-            $(dom).prop(HTML_PROPERTY.outerHTML, $(prevMonthDom).prop(HTML_PROPERTY.outerHTML));
-        });
+    function addClickEventHandlerToMonthSwitchers(dom) {
+        $(dom)
+            .find("."+HTML_CLASS.prevMonthSwitcher)
+            .on(EVENT.click,
+                function() {
+                    clickOnPrev(calendarObj);
+                }
+            );
+    }
+
+    function clickOnPrev(monthDiff) {
+        console.log("clickOnPrev");
+        const prevMonthDom = getOtherMonthDom(-1);
+        replaceWithOtherMonthDom(prevMonthDom);
     }
     
-    function getPrevMonthDom() {
-        const dateObj = getPrevMonthDateObj();
-        const calendarObj = getCalendarObj(dateObj);
-        const dom = new MonthlyCalendar(calendarObj).getDom();
-        //console.log(`prevMonthDom=${prevMonthDom.outerHTML}`);
+    function getOtherMonthDom(monthDiff) {
+        const otherMonthDateObj = getOtherMonthDateObj(monthDiff);
+        const otherMonthCalendarObj = getCalendarObj(otherMonthDateObj, calendarObj.locale);
+        const dom = new MonthlyCalendar(otherMonthCalendarObj).getDom();
+        //console.log(`prevMonthDom=${dom.outerHTML}`);
         return dom;
     }
     
-    function getPrevMonthDateObj() {
-        const dateObj = new Date(currentYear, currentMonth, 1);
-        dateObj.setMonth(dateObj.getMonth() - 1);
-        //printMonthName(dateObj);
+    function getOtherMonthDateObj(monthDiff) {
+        const yearNumber = $(document).find("."+HTML_CLASS.yearNumber).prop(HTML_PROPERTY.innerHTML);
+        const monthNumber = $(document).find("."+HTML_CLASS.monthNumber).prop(HTML_PROPERTY.innerHTML);
+        const dateObj = new Date(yearNumber, monthNumber, 1);
+        dateObj.setMonth(dateObj.getMonth() + monthDiff);
+        //MonthlyCalendar.printDateObj(dateObj, currentLocale);
         return dateObj;
     }
     
-    function printMonthName(dateObj) {
-        console.log(`monthName = ${MonthlyCalendar.getMonthName(dateObj.getFullYear(), dateObj.getMonth(), currentLocale, MONTH_NAME_OPTION.long)}`);
-    }
-    
-    function getCalendarObj(dateObj) {
+    function getCalendarObj(dateObj, locale) {
         const calendarObj = {
             year: dateObj.getFullYear(),
             month: dateObj.getMonth() + 1,
-            locale: currentLocale
+            locale: locale
         };
-        
+        //MonthlyCalendar.printCalendarObj(calendarObj);
         return calendarObj;
+    }
+    
+    function replaceWithOtherMonthDom(otherMonthDom) {
+        let replaceObj = {
+            [REPLACE_OBJ.targetType]: HTML_PROPERTY.className,
+            [REPLACE_OBJ.property]: HTML_PROPERTY.innerHTML
+        }
+        
+        replaceObj[REPLACE_OBJ.targetName] = HTML_CLASS.yearNumber;
+        DomGenerator.replaceHTMLProperty(otherMonthDom, replaceObj);
+        
+        replaceObj[REPLACE_OBJ.targetName] = HTML_CLASS.monthNumber;
+        DomGenerator.replaceHTMLProperty(otherMonthDom, replaceObj);
+        
+        replaceObj[REPLACE_OBJ.targetName] = HTML_CLASS.monthName;
+        DomGenerator.replaceHTMLProperty(otherMonthDom, replaceObj);
+        
+        replaceWithOtherMonthWeeks(otherMonthDom);
+    }
+    
+    function replaceWithOtherMonthWeeks(otherMonthDom) {
+        $(document).find("."+HTML_CLASS.week).remove();
+        $(otherMonthDom).find("."+HTML_CLASS.week).each((index, dom) => {
+            $(document).find("."+HTML_CLASS.month).append(dom);
+        });
     }
 }
 
@@ -312,6 +352,22 @@ MonthlyCalendar.getMonthName = function(year, month, locale, monthNameOption) {
     const monthName = dateObj.toLocaleDateString(locale, options);
 
     return monthName;
+};
+
+MonthlyCalendar.printDateObj = function(dateObj, locale) {
+    console.log(`=== DateObj [start] ===`);
+    console.log(`FullYear = ${dateObj.getFullYear()}`);
+    console.log(`Month = ${dateObj.getMonth()}`);
+    console.log(`MonthName = ${MonthlyCalendar.getMonthName(dateObj.getFullYear(), dateObj.getMonth(), locale, MONTH_NAME_OPTION.long)}`);
+    console.log(`=== DateObj [end] ===`);
+};
+
+MonthlyCalendar.printCalendarObj = function(calendarObj) {
+    console.log(`=== CalendarObj [start] ===`);
+    console.log(`locale = ${calendarObj.locale}`);
+    console.log(`year = ${calendarObj.year}`);
+    console.log(`month = ${calendarObj.month}`);
+    console.log(`=== CalendarObj [end] ===`);
 }
 
 const MONTH_NAME_OPTION = {

@@ -34,6 +34,30 @@ DomGenerator.generateTextDoms = function(num, text) {
     return doms;
 };
 
+DomGenerator.replaceHTMLProperty = function(srcDom, replaceObj) {    
+    let prefix = "";
+    switch(replaceObj.targetType) {
+        case HTML_PROPERTY.className:
+            prefix = ".";
+            break;
+        default:
+            throw `Unexpected replace-by [${propertyObj.by}]`;
+            break;
+    }
+    const findStr = prefix + replaceObj.targetName;
+    
+    const value = $(srcDom).find(findStr).prop(replaceObj.property);
+    
+    $(document).find(findStr).prop(replaceObj.property, value);
+}
+
+const REPLACE_OBJ = {
+    targetType: "targetType", //className
+    targetName: "targetName", //month-name
+    property: "property" //innerHTML
+};
+
 export {
-    DomGenerator
+    DomGenerator,
+    REPLACE_OBJ
 };
