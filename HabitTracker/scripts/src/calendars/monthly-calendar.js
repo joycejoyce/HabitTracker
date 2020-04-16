@@ -268,7 +268,7 @@ function MonthlyCalendar(calendarObj) {
     function getDateNumberDom(dateNumber) {
         const dom = DomGenerator.generateDOMWithChildren(
             {
-                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.span,
+                [HTML_PROPERTY.tagName]: HTML_TAG_NAME.div,
                 [HTML_PROPERTY.innerHTML]: dateNumber,
                 [HTML_PROPERTY.className]: HTML_CLASS.dateNumber
             }, []

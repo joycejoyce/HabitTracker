@@ -3,9 +3,19 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./styles/calendar.css">
+        <link rel="stylesheet" type="text/css" href="./styles/tracker.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div id="site-body">
+            <div id="header">header</div>
+            <div id="middle">
+                <div id="sidebar-left">sidebar-left</div>
+                <div id="content"></div>
+            </div>
+            <div id="footer">footer</div>
+        </div>
+        
         <script type="module">
             import {Calendar, CALENDAR_TYPE, LOCALE} from "./scripts/src/calendars/calendar.js";
             
@@ -18,7 +28,7 @@
                 const calendar = new Calendar().getCalendar(calendarObj, CALENDAR_TYPE.monthly);
                 //const calendar = new Calendar().getCalendar(calendarObj, CALENDAR_TYPE.yearly);
                 const dom = calendar.getDom();
-                $("body").append(dom);
+                $("#content").append(dom);
             });
         </script>
     </body>

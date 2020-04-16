@@ -7,8 +7,12 @@ const expect = require("chai").expect;
 beforeEach(loadHTML);
 
 describe(`new Tracker()`, function() {
-    it(`return a Tracker object`, function() {
+    it(`return a Tracker`, function() {
         const tracker = new Tracker();
         expect(tracker instanceof Tracker).to.be.true;
     })
+})
+
+describe(`mark()`, function() {
+    
 })
