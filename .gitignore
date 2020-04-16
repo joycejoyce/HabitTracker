@@ -1,9 +1,8 @@
 GitStatus_*.txt
 GitCommit_*.bat
 node_modules/
-HabitTracker/tests/Test*
 design/*.png
-design/*.png
-deprecated/
+~*.pptx
 *.txt
-HabitTracker/dynamodb_local_latest/
+deprecated/
+tmp_tests/

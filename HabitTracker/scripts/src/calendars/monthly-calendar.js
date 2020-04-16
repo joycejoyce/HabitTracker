@@ -278,19 +278,19 @@ function MonthlyCalendar(calendarObj) {
     }
     
     function addClickEventHandlerToMonthSwitchers(dom) {
+        addClickEventHandlerToPrevMonthSwitcher(dom);
+        addClickEventHandlerToNextMonthSwitcher(dom);
+    }
+
+    function addClickEventHandlerToPrevMonthSwitcher(dom) {
         $(dom)
             .find("."+HTML_CLASS.prevMonthSwitcher)
             .on(EVENT.click,
                 function() {
-                    clickOnPrev(calendarObj);
+                    const prevMonthDom = getOtherMonthDom(-1);
+                    replaceWithOtherMonthDom(prevMonthDom);
                 }
             );
-    }
-
-    function clickOnPrev(monthDiff) {
-        console.log("clickOnPrev");
-        const prevMonthDom = getOtherMonthDom(-1);
-        replaceWithOtherMonthDom(prevMonthDom);
     }
     
     function getOtherMonthDom(monthDiff) {
@@ -343,6 +343,17 @@ function MonthlyCalendar(calendarObj) {
         $(otherMonthDom).find("."+HTML_CLASS.week).each((index, dom) => {
             $(document).find("."+HTML_CLASS.month).append(dom);
         });
+    }
+    
+    function addClickEventHandlerToNextMonthSwitcher(dom) {
+        $(dom)
+            .find("."+HTML_CLASS.nextMonthSwitcher)
+            .on(EVENT.click,
+                function() {
+                    const nextMonthDom = getOtherMonthDom(1);
+                    replaceWithOtherMonthDom(nextMonthDom);
+                }
+            );
     }
 }
 
