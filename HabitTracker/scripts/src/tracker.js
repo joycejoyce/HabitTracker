@@ -1,7 +1,0 @@
-function Tracker() {
-    
-}
-
-export {
-    Tracker
-};

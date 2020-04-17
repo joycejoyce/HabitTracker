@@ -1,4 +1,5 @@
 import {DomGenerator, REPLACE_OBJ} from "../dom-generator.js";
+import {Marker} from "../marker.js";
 import {HTML_CLASS, HTML_PROPERTY, HTML_TAG_NAME, EVENT} from "../html-properties.js";
 
 function MonthlyCalendar(calendarObj) {
@@ -20,7 +21,8 @@ function MonthlyCalendar(calendarObj) {
             }, tableData
         );
         //console.log(`final dom = ${dom.outerHTML}`);
-        addClickEventHandlerToMonthSwitchers(dom);
+        addEventHandlers(dom);
+
         return dom;
     };
     
@@ -277,6 +279,11 @@ function MonthlyCalendar(calendarObj) {
         return dom;
     }
     
+    function addEventHandlers(dom) {
+        addClickEventHandlerToMonthSwitchers(dom);
+        addClickEventHandlerToCurrentMonthDates(dom);
+    }
+    
     function addClickEventHandlerToMonthSwitchers(dom) {
         addClickEventHandlerToPrevMonthSwitcher(dom);
         addClickEventHandlerToNextMonthSwitcher(dom);
@@ -352,6 +359,16 @@ function MonthlyCalendar(calendarObj) {
                 function() {
                     const nextMonthDom = getOtherMonthDom(1);
                     replaceWithOtherMonthDom(nextMonthDom);
+                }
+            );
+    }
+    
+    function addClickEventHandlerToCurrentMonthDates(dom) {
+        $(dom)
+            .find("."+HTML_CLASS.currentMonthDate)
+            .on(EVENT.click,
+                function() {
+                    new Marker($(this)).markAndUnmark();
                 }
             );
     }

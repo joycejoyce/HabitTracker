@@ -13,7 +13,8 @@ const HTML_CLASS = {
     yearAndMonth: "year-and-month",
     prevMonthSwitcher: "prev-month-switcher",
     nextMonthSwitcher: "next-month-switcher",
-    week: "week"
+    week: "week",
+    crossCanvas: "cross-canvas"
 };
 
 const HTML_TAG_NAME = {
@@ -21,7 +22,8 @@ const HTML_TAG_NAME = {
     td: "td",
     table: "table",
     div: "div",
-    span: "span"
+    span: "span",
+    canvas: "canvas"
 };
 
 const HTML_PROPERTY = {
@@ -29,7 +31,8 @@ const HTML_PROPERTY = {
     className: "className",
     innerHTML: "innerHTML",
     outerHTML: "outerHTML",
-    colSpan: "colSpan"
+    colSpan: "colSpan",
+    fontSize: "font-size"
 };
 
 const EVENT = {

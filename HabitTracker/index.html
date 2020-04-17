@@ -3,7 +3,7 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./styles/calendar.css">
-        <link rel="stylesheet" type="text/css" href="./styles/tracker.css">
+        <link rel="stylesheet" type="text/css" href="./styles/marker.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -18,6 +18,8 @@
         
         <script type="module">
             import {Calendar, CALENDAR_TYPE, LOCALE} from "./scripts/src/calendars/calendar.js";
+            import {HTML_CLASS} from "./scripts/src/html-properties.js";
+            import {Marker} from "./scripts/src/marker.js";
             
             $(document).ready(function() {
                 const calendarObj = {

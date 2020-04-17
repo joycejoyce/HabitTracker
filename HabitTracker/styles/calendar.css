@@ -1,6 +1,43 @@
+html {
+    font-size: 10px;
+}
+
+#site-body {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 6fr 0.5fr;
+    width: 95vw;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+#middle {
+    display: grid;
+    grid-template-columns: 1.5fr 5fr;
+}
+
+#sidebar-left {
+    background-color: burlywood;
+}
+
+#content {
+    background-color: darkseagreen;
+}
+
+#footer {
+    background-color: fuchsia;
+}
+
+.month {
+    width: 100%;
+}
+
 .year-and-month {
     text-align: center;
     white-space: pre;
+    height: 10%;
+    font-size: 3.5rem;
 }
 
 .prev-month-date, .next-month-date {
@@ -29,4 +66,38 @@
 
 .next-month-switcher {
     right: 0px;
+}
+
+.days-of-week td {
+    text-align: center;
+    background-color: chartreuse;
+    height: 8%;
+    font-size: 2.3rem;
+}
+
+.current-month-date {
+    cursor: pointer;
+}
+
+.week td {
+    position: relative;
+    width: 14.3%;
+    font-size: 2.3rem;
+    text-align: center;
+    vertical-align: top;
+    background-color: yellow;
+}
+
+.week td::after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+
+.date-number {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
 }
