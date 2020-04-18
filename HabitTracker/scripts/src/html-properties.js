@@ -14,7 +14,7 @@ const HTML_CLASS = {
     prevMonthSwitcher: "prev-month-switcher",
     nextMonthSwitcher: "next-month-switcher",
     week: "week",
-    crossCanvas: "cross-canvas"
+    crossSign: "cross-sign"
 };
 
 const HTML_TAG_NAME = {
@@ -23,7 +23,7 @@ const HTML_TAG_NAME = {
     table: "table",
     div: "div",
     span: "span",
-    canvas: "canvas"
+    img: "img"
 };
 
 const HTML_PROPERTY = {
@@ -32,7 +32,7 @@ const HTML_PROPERTY = {
     innerHTML: "innerHTML",
     outerHTML: "outerHTML",
     colSpan: "colSpan",
-    fontSize: "font-size"
+    src: "src"
 };
 
 const EVENT = {
