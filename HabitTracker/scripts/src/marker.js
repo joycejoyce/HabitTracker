@@ -28,10 +28,13 @@ function Marker(markDom) {
                 [HTML_PROPERTY.src]: "../../images/cross-sign.svg"
             }, []
         );
-        console.log("(cross sign)dom = " + dom.outerHTML);
+        //console.log("(cross sign)dom = " + dom.outerHTML);
         return dom;
     }
     
+    function unmark() {
+        $(markDom).find("."+HTML_CLASS.crossSign).remove();
+    }
 }
 
 export {
