@@ -3,11 +3,16 @@ const HTML_ID = {
     textArea: "text-area"
 };
 
+const HTML_PROPERTY = {
+    id: "id"
+};
+
 const EVENT = {
     click: "click"
 };
 
 export {
     HTML_ID,
+    HTML_PROPERTY,
     EVENT
 };
