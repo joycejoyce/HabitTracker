@@ -2,40 +2,72 @@
 	<head>
 		<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./styles.css">
+        <!--
+            [JavaScript]
+            1. jQuery (it's very important that jQuery must be the first)
+            2. Bootstrap
+            [CSS]
+            1. Bootstrap
+            2. (mine)
+        -->
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./styles/db-operations.css">
 	</head>
 	<body>
-        <table class="table w-auto" width="400">
-            <thead class="thead-dark">
-                <tr>
-                    <th colspan="3">Table Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>track</td>
-                    <td><button id="track-tbl-create-btn" type="button" class="btn btn-primary">Create</button></td>
-                    <td><button id="track-tbl-delete-btn" type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>user</td>
-                    <td><button id="user-tbl-create-btn" type="button" class="btn btn-primary">Create</button></td>
-                    <td><button id="user-tbl-delete-btn" type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>habit</td>
-                    <td><button id="habit-tbl-create-btn" type="button" class="btn btn-primary">Create</button></td>
-                    <td><button id="habit-tbl-delete-btn" type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
-		<textarea readonly id="text-area" style="width:400px; height:300px"></textarea>
+        <div id="grid-wrapper">
+            <div id="creat-delete-tables">
+                <h3>Create / Delete Tables</h3>
+                <table class="table w-auto" width="400">
+                    <tbody>
+                        <tr>
+                            <td>track</td>
+                            <td><button id="track-tbl-create-btn" type="button" class="btn btn-primary">Create</button></td>
+                            <td><button id="track-tbl-delete-btn" type="button" class="btn btn-danger">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>user</td>
+                            <td><button id="user-tbl-create-btn" type="button" class="btn btn-primary">Create</button></td>
+                            <td><button id="user-tbl-delete-btn" type="button" class="btn btn-danger">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>habit</td>
+                            <td><button id="habit-tbl-create-btn" type="button" class="btn btn-primary">Create</button></td>
+                            <td><button id="habit-tbl-delete-btn" type="button" class="btn btn-danger">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <label for="comment">Result:</label>
+                    <textarea class="form-control" rows="6" id="result"></textarea>
+                </div>
+            </div>
+            
+            <div id="query-section">
+                <h3>Query Table Data</h3>
+                <div id="table-dropdown-list" class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a table...
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="query-table-track">track</a></li>
+                        <li><a href="#" id="query-table-user">user</a></li>
+                        <li><a href="#" id="query-table-habit">habit</a></li>
+                    </ul>
+                </div>
+                
+                <form class="query-form" id="track-table-query-form">
+                    <div class="form-group">
+                        <label>user_id:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+
+        </div>
         <script type="module">
-            import {EventHandler} from "./event-handler.js"
+            import {EventHandler} from "./tools/event-handler.js"
             
             new EventHandler().addEventHandlers();
         </script>

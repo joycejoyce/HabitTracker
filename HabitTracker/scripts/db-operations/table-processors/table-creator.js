@@ -1,6 +1,6 @@
-import {TABLE_NAME, TBL_TRACK_COLUMN} from "./db-info.js";
-import {DBSetter} from "./db-setter.js";
-import {Message} from "./message.js";
+import {TABLE_NAME, TBL_TRACK_COLUMN} from "../constants/db-info.js";
+import {DBSetter} from "../tools/db-setter.js";
+import {Message} from "../tools/message.js";
 import {PROCESS} from "./table-processor.js";
 
 function TableCreator(tableName) {
