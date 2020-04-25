@@ -4,7 +4,9 @@ const HTML_CLASS = {
 
 const HTML_ID = {
     createTrackTblBtn: "create-track-tbl-btn",
-    result: "result"
+    result: "result",
+    queryTableTrack: "query-table-track",
+    trackTableQueryForm: "track-table-query-form"
 };
 
 const HTML_PROPERTY = {
@@ -26,7 +28,7 @@ const EVENT = {
 };
 
 export {
-    HTML_CLASS,    
+    HTML_CLASS,
     HTML_ID,
     HTML_PROPERTY,
     CSS_PROPERTY,

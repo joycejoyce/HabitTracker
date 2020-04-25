@@ -33,7 +33,7 @@ function EventHandler() {
     
     function addEventHandlersForQuerying() {
         addClickEventHandlerOnQueryTableName();
-        addSubmitEventHandlerOnQuerySubmitButton();
+        //addSubmitEventHandlerOnQuerySubmitButton();
     }
     
     function addClickEventHandlerOnQueryTableName() {
@@ -47,7 +47,7 @@ function EventHandler() {
         );
     }
     
-    function addSubmitEventHandlerOnQuerySubmitButton() {
+    /*function addSubmitEventHandlerOnQuerySubmitButton() {
         $(document).find(`form[class="${HTML_CLASS.queryForm}"]`).on(
             EVENT.submit,
             function(evt) {
@@ -55,14 +55,14 @@ function EventHandler() {
                 const tableName = $(this).prop(HTML_PROPERTY.id).split("-")[0];
                 const queryCondition = getQueryCondition(tableName, $(this));
                 /*const processor = new TableProcessor(tableName, PROCESS.query).getProcessor();
-                processor.showQueryFields();*/
+                processor.showQueryFields();
             }
         );
     }
     
     function getQueryCondition(tableName, dom) {
         
-    }
+    }*/
 }
 
 export {

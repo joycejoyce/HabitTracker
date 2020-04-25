@@ -13,10 +13,22 @@ function loadHTML() {
     const jsdom = new JSDOM("<!doctype html><html><body></body></html>");
     const { window } = jsdom;
     global.document = window.document;
-    global.$ = require('jquery')(window);
-};
+    global.$ = require("jquery")(window);
+}
+
+function loadHTMLFile(file) {
+    const { JSDOM } = require("jsdom");
+    return JSDOM.fromFile(file)
+        .then((dom) => {
+            const { window } = dom.window;
+            global.window = window;
+            global.document = window.document;
+            global.$ = require("jquery")(window);
+        });
+}
 
 module.exports = {
     checkDOMProperties,
-    loadHTML
+    loadHTML,
+    loadHTMLFile
 };

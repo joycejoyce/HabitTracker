@@ -3,8 +3,8 @@ const TABLE_NAME = {
 };
 
 const TBL_TRACK_COLUMN = {
-    userId: "user_id",
-    habitId: "habit_id",
+    userId: "user-id",
+    habitId: "habit-id",
     date: "date"
 };
 
