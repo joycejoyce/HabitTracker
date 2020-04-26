@@ -1,13 +1,7 @@
-import {loadHTMLFile} from "./common-func-for-tests.js";
-import {TBL_TRACK_COLUMN, TABLE_NAME} from "../scripts/db-operations/constants/db-info.js";
-import {TableProcessor} from "../scripts/db-operations/table-processors/table-processor.js";
-import {HTML_ID, HTML_CLASS, CSS_PROPERTY, CSS_VALUE} from "../scripts/db-operations/constants/html-properties.js";
-
 const expect = require("chai").expect;
 
 describe(`GUI of querying DB data`, () => {
-    //const file = "./scripts/db-operations/index.html";
-    const file = "C:/Users/Joyce/Documents/GitRepo_HabitTracker/HabitTracker/scripts/db-operations/db-operations.html";
+    const file = "../db-operations.html";
     let loadDoc;
     beforeEach(() => { loadDoc = loadHTMLFile(file) });
     
@@ -34,11 +28,29 @@ describe(`GUI of querying DB data`, () => {
         });
     });*/
     
+    function loadHTMLFile(file) {
+        const { JSDOM } = require("jsdom");
+        //const options = null;
+        const options = {
+            resources: 'usable'/*,
+            url: 'file:///C:/Users/Joyce/Documents/GitRepo_HabitTracker/HabitTracker/scripts/db-operations/'*/
+        };
+        return JSDOM.fromFile(file, options)
+            .then((dom) => {
+                console.log("file = " + file);
+                //console.log("options.url = " + options.url);
+                const { window } = dom.window;
+                global.window = window;
+                global.document = window.document;
+                global.$ = require("jquery")(window);
+            });
+    }
+    
     function checkBeforeClickOnQueryTableTrack() {
         console.log("Enter checkBeforeClickOnQueryTableTrack()");
         const doms = Array.prototype.slice.call(document.getElementsByClassName(HTML_CLASS.queryForm));
         console.log("query-form length = " + doms.length);
-        console.log("body = " + document.body.outerHTML);
+        console.log("body = " + document.body.outerHTML.substr(0, 50));
         doms.forEach((dom) => {
             console.log("here 2");
             const style = window.getComputedStyle(dom, null);
