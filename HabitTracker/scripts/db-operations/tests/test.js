@@ -1,7 +1,10 @@
+import {HTML_CLASS, CSS_PROPERTY, CSS_VALUE} from "../constants/html-properties.js";
+
 const expect = require("chai").expect;
 
 describe(`GUI of querying DB data`, () => {
-    const file = "../db-operations.html";
+    //const file = "../db-operations.html";
+    const file = "./scripts/db-operations/db-operations.html";
     let loadDoc;
     beforeEach(() => { loadDoc = loadHTMLFile(file) });
     
@@ -48,9 +51,13 @@ describe(`GUI of querying DB data`, () => {
     
     function checkBeforeClickOnQueryTableTrack() {
         console.log("Enter checkBeforeClickOnQueryTableTrack()");
+        //console.log("body = " + document.body.outerHTML);
+        console.log("body = " + document.body.outerHTML.substr(0, 50) + "...");
+        console.log("s = ");
+        console.log(HTML_CLASS.queryForm);
+        const len = document.getElementsByClassName(HTML_CLASS.queryForm).length;
         const doms = Array.prototype.slice.call(document.getElementsByClassName(HTML_CLASS.queryForm));
         console.log("query-form length = " + doms.length);
-        console.log("body = " + document.body.outerHTML.substr(0, 50));
         doms.forEach((dom) => {
             console.log("here 2");
             const style = window.getComputedStyle(dom, null);
