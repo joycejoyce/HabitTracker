@@ -4,9 +4,11 @@ import {TABLE_NAME} from "../constants/db-info.js";
 
 function EventHandler() {
     this.addEventHandlers = function() {
+        console.log("Enter addEventHandlers()");
         addClickEventHandlerOnCreateTblButton();
         addClickEventHandlerOnDeleteTblButton();
         addEventHandlersForQuerying();
+        console.log("Leave addEventHandlers()");
     }
     
     function addClickEventHandlerOnCreateTblButton() {
