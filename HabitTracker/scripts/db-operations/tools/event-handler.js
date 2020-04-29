@@ -12,6 +12,7 @@ function EventHandler() {
     }
     
     function addClickEventHandlerOnCreateTblButton() {
+        console.log("document.head = " + document.head.outerHTML);
         $(document).find(`button[id$="-tbl-create-btn"]`).on(
             EVENT.click,
             function() {
@@ -42,6 +43,7 @@ function EventHandler() {
         $(document).find(`a[id^="query-table-"]`).on(
             EVENT.click,
             function() {
+                console.log("Clicked on QueryTableName");
                 const tableName = $(this).prop(HTML_PROPERTY.id).split("-").pop();
                 const processor = new TableProcessor(tableName, PROCESS.query).getProcessor();
                 processor.showQueryFields();
