@@ -12,7 +12,7 @@ describe(`GUI of querying DB data`, () => {
         loadDoc = await loadFile(file);
     });
 
-    it(`choose table "track" would show ${HTML_ID.trackTableQueryForm}`, async () => {
+    it(`Choose table "track" would show ${HTML_ID.trackTableQueryForm}`, async () => {
         await loadDoc;
         window.onload = (event) => {
             try {
