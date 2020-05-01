@@ -8,11 +8,10 @@ function EventHandler() {
         addClickEventHandlerOnCreateTblButton();
         addClickEventHandlerOnDeleteTblButton();
         addEventHandlersForQuerying();
-        console.log("Leave addEventHandlers()");
+        console.log("Exit addEventHandlers()");
     }
     
     function addClickEventHandlerOnCreateTblButton() {
-        console.log("document.head = " + document.head.outerHTML);
         $(document).find(`button[id$="-tbl-create-btn"]`).on(
             EVENT.click,
             function() {
@@ -40,10 +39,10 @@ function EventHandler() {
     }
     
     function addClickEventHandlerOnQueryTableName() {
-        $(document).find(`a[id^="query-table-"]`).on(
+        //$(document).find(`a[id^="query-table-"]`).on(
+        $("#query-table-track").on(
             EVENT.click,
             function() {
-                console.log("Clicked on QueryTableName");
                 const tableName = $(this).prop(HTML_PROPERTY.id).split("-").pop();
                 const processor = new TableProcessor(tableName, PROCESS.query).getProcessor();
                 processor.showQueryFields();

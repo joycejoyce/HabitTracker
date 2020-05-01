@@ -1,31 +1,41 @@
 import "regenerator-runtime/runtime.js";
 import {chai, expect, printErrorStack} from "./common-func-for-tests.js";
-import {TBL_TRACK_COLUMN, TABLE_NAME} from "../scripts/db-operations/constants/db-info.js";
-import {HTML_ID, HTML_CLASS, CSS_PROPERTY, CSS_VALUE} from "../scripts/db-operations/constants/html-properties.js";
-
-let loadDoc;
-let window, document, $;
+import {TBL_TRACK_COLUMN, TABLE_NAME} from "../scripts/db-operations/src/constants/db-info.js";
+import {HTML_ID, HTML_CLASS, CSS_PROPERTY, CSS_VALUE} from "../scripts/db-operations/src/constants/html-properties.js";
 
 describe(`GUI of querying DB data`, () => {
+    let window, document, $;
+    let jsdom;
+    
     beforeEach(async () => {
-        const file = "./scripts/db-operations/db-operations.html";
-        loadDoc = await loadFile(file);
+        const { JSDOM } = require("jsdom");
+        jsdom = await JSDOM.fromFile("./scripts/db-operations/db-operations.html", {
+            resources: "usable",
+            runScripts: "dangerously",
+            url: "http://localhost:8081"
+        })
+        .then((dom) => {
+            window = dom.window;
+            document = window.document;
+            $ = require("jquery")(window);
+        });
+        await new Promise(resolve => window.addEventListener("load", resolve));
+        await window.System.import("event-handler").then((module) => {
+                console.log("(in test-db-operations.js) module loaded");
+                new module.EventHandler().addEventHandlers();
+            });
     });
 
     it(`Choose table "track" would show ${HTML_ID.trackTableQueryForm}`, async () => {
-        await loadDoc;
-        window.onload = (event) => {
-            try {
-                checkBeforeClickOnQueryTableTrack();
-                
-                const queryList = document.getElementById(HTML_ID.queryTableTrack);
-                $(queryList).click();
+        try {
+            checkBeforeClickOnQueryTableTrack();
 
-                checkAfterClickOnQueryTableTrack();
-            }
-            catch(err) {
-                printErrorStack(err);
-            }
+            document.getElementById(HTML_ID.queryTableTrack).click();
+
+            checkAfterClickOnQueryTableTrack();
+        }
+        catch(err) {
+            printErrorStack(err);
         }
     });
     
@@ -50,17 +60,3 @@ describe(`GUI of querying DB data`, () => {
         expect(display).to.eql(CSS_VALUE.block);
     }
 })
-
-function loadFile(file) {
-    const { JSDOM } = require("jsdom");
-    const options = {
-        resources: "usable",
-        runScripts: "dangerously"
-    };
-    return JSDOM.fromFile(file, options)
-        .then((dom) => {
-            window = dom.window;
-            document = window.document;
-            $ = require("jquery")(window);
-        });
-}

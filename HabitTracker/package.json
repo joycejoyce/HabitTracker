@@ -24,10 +24,11 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "test": "mocha --icu-data-dir=node_modules/full-icu --require @babel/register",
+    "test": "mocha --timeout 60000 --icu-data-dir=node_modules/full-icu --require @babel/register",
     "watch": "webpack --mode development --watch",
     "start": "webpack --mode development",
-    "deploy": "webpack --mode production"
+    "deploy": "webpack --mode production",
+    "build-db-op": "babel scripts/db-operations/src --out-dir scripts/db-operations/dist --plugins=@babel/plugin-transform-modules-systemjs"
   },
   "keywords": [],
   "author": "",

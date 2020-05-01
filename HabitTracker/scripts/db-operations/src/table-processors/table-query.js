@@ -2,8 +2,6 @@ import {HTML_CLASS, CSS_PROPERTY, CSS_VALUE} from "../constants/html-properties.
 
 function TableQuery(tableName) {
     this.showQueryFields = function() {
-        console.log("Enter showQueryFields()");
-        
         $(document).find("."+HTML_CLASS.queryForm).css(CSS_PROPERTY.display, CSS_VALUE.none);
         const id = getHtmlIdToShowQueryForm();
         $(document).find("#"+id).css(CSS_PROPERTY.display, CSS_VALUE.block);

@@ -2,16 +2,27 @@
 	<head>
 		<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="systemjs-importmap">
+            {
+              "imports": {
+                "event-handler": "./dist/tools/event-handler.js"
+              }
+            }
+      </script>
         <!--
             [JavaScript]
             1. jQuery (it's very important that jQuery must be the first)
             2. Bootstrap
+            3. SystemJS
+            4. SystemJS-extra
             [CSS]
             1. Bootstrap
             2. (mine)
         -->
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./styles/db-operations.css">
 	</head>
@@ -74,10 +85,11 @@
             </div>
 
         </div>
-        <script type="module">
-            import {EventHandler} from "./tools/event-handler.js";
-            
-            new EventHandler().addEventHandlers();
+        <script>
+            System.import("event-handler").then((module) => {
+                console.log("(in db-operations.html) module loaded");
+                new module.EventHandler().addEventHandlers();
+            });
         </script>
 	</body>
 </html>
