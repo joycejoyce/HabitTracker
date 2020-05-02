@@ -16,12 +16,13 @@ describe(`GUI of querying DB data`, () => {
         })
         .then((dom) => {
             window = dom.window;
+            window.isTesting = true;
             document = window.document;
             $ = require("jquery")(window);
         });
+        
         await new Promise(resolve => window.addEventListener("load", resolve));
         await window.System.import("event-handler").then((module) => {
-                console.log("(in test-db-operations.js) module loaded");
                 new module.EventHandler().addEventHandlers();
             });
     });

@@ -86,10 +86,15 @@
 
         </div>
         <script>
-            System.import("event-handler").then((module) => {
-                console.log("(in db-operations.html) module loaded");
-                new module.EventHandler().addEventHandlers();
-            });
+            if(!window.isTesting) {
+                window.addEventListener("load", executeEventHandler);
+            }
+            
+            function executeEventHandler() {
+                System.import("event-handler").then((module) => {
+                    new module.EventHandler().addEventHandlers();
+                });
+            }
         </script>
 	</body>
 </html>
