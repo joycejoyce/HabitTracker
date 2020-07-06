@@ -1,0 +1,25 @@
+{
+  "name": "GitRepo_HabitTracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joycejoyce/HabitTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joycejoyce/HabitTracker/issues"
+  },
+  "homepage": "https://github.com/joycejoyce/HabitTracker#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
