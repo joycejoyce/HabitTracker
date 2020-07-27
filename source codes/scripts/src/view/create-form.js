@@ -8,18 +8,26 @@ class CreateForm extends React.Component {
     super();
 
     this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleClickOptions = this.handleClickOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       valid: false,
       inputs: {
         days: {
+          name: "days",
           value: "",
-          valid: false
+          valid: false,
+          options: [21, 30, 50, 100]
         },
         habit: {
+          name: "habit",
           value: "",
-          valid: false
+          valid: false,
+          options: ["exercise for 30 min",
+                    "drink 2000 c.c. water",
+                    "play piano for 10 min",
+                    "coding for 15 min"]
         }
       },
       eventHandlers: {
@@ -36,6 +44,17 @@ class CreateForm extends React.Component {
     
     const valid = this.validate(name, value);
     changeState(this, name, "valid", valid);
+  }
+
+  handleClickOptions(name, value) {
+    const e = {
+      target: {
+        name,
+        value
+      }
+    };
+
+    this.handleChangeInput(e);
   }
 
   validate(name, value) {
@@ -59,44 +78,84 @@ class CreateForm extends React.Component {
   }
 
   render() {
-    console.log("days = ", this.state.inputs.days.value);
     return (
-      <form id="create-habit-tracker">
-        <h1>Create a Habit Tracker</h1>
-        <p>
-          I will use &nbsp;<Day inputs={this.state.inputs} eventHandlers={this.state.eventHandlers} /> &nbsp;days to<br />
-          build a daily habit: &nbsp;<Habit inputs={this.state.inputs} eventHandlers={this.state.eventHandlers} />
-        </p>
-        <input type="submit" value="Create" onClick={this.state.eventHandlers.onSubmit} />
+      <form id="create">
+        <div className="contents">
+          <div className="line">
+            I will use <DropdownInput className="days" ctrl={this.state.inputs.days} onClick={this.handleClickOptions} onChange={this.handleChangeInput} /> days to
+          </div>
+          <div className="line">
+            build a daily habit:
+          </div>
+          <div className="line">
+            <DropdownInput className="habit" ctrl={this.state.inputs.habit} onClick={this.handleClickOptions} onChange={this.handleChangeInput} />
+          </div>
+        </div>
+        <input type="submit" value="Start from today" onClick={this.state.eventHandlers.onSubmit} />
       </form>
     );
   }
 }
 
-class Day extends React.Component {
-  render() {
-    return (
-      <input type="text"
-        name="days"
-        placeholder=""
-        autoComplete="off"
-        value={this.props.inputs.days.value}
-        onChange={this.props.eventHandlers.onChange}
-      />
-    );
-  }
-}
+class DropdownInput extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dropdown: {
+        display: "none"
+      }
+    };
 
-class Habit extends React.Component {
+    this.handleClickInput = this.handleClickInput.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClickOption = this.handleClickOption.bind(this);
+  }
+
+  handleClickInput() {
+    if(this.state.dropdown.display === "block") {
+      changeState(this, "dropdown", "display", "none");
+    }
+    else {
+      changeState(this, "dropdown", "display", "block");
+    }
+  }
+
+  handleInputChange(e) {
+    changeState(this, "dropdown", "display", "none");
+    this.props.onChange(e);
+  }
+
+  handleClickOption(opt) {
+    changeState(this, "dropdown", "display", "none");
+    this.props.onClick(this.props.ctrl.name, opt);
+  }
+
   render() {
+    const dropdownDisplay = {
+      display: this.state.dropdown.display
+    };
+
     return (
-      <input type="text"
-        name="habit"
-        placeholder=""
-        autoComplete="off"
-        value={this.props.inputs.habit.value}
-        onChange={this.props.eventHandlers.onChange}
-      />
+        <div className={"dropdown-input " + this.props.ctrl.name}>
+            <input type="text"
+              onChange={(e) => this.handleInputChange(e)}
+              onClick={this.handleClickInput}
+              name={this.props.ctrl.name}
+              value={this.props.ctrl.value}
+              autoComplete="off"
+            />
+            <div className="dropdown-list" style={dropdownDisplay}>
+              {
+                this.props.ctrl.options.map(opt =>
+                  (<div key={opt}
+                    className="dropdown-item"
+                    onClick={() => this.handleClickOption(opt)}>
+                      {opt}
+                  </div>)
+                )
+              }
+            </div>
+        </div>
     );
   }
 }

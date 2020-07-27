@@ -1,118 +1,159 @@
-$font-serif: 'Bentham', serif;
-$font-sans-serif: 'Open Sans', sans-serif;
-
-$primary-color: #6b5bcc;
-$secondary-color: #f4ede5;
-$bk-color: #FFFFFF;
-$text-color: #84879F;
-$title-color: #2A2A2A;
-
-/* reset */
-* {
-  box-sizing: border-box;
+:root {
+  --primary-color: #1A535C;
+  --white: #F7FFF7;
+  --red: #FF6B6B;
+  --yellow: #FFE66D;
+  --green: #4ECDC4;
 }
-body,p,a,ul,li {
+
+/* font-size */
+body {
+  font-size: 28px;
+}
+* {
+  font-size: 1em;
+}
+header h1 {
+  font-size: 1.4em;
+  font-weight: normal;
+}
+input[type="submit"] {
+  font-size: 0.64em;
+}
+
+/* font-family */
+* {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* styles */
+* {
   margin: 0;
   padding: 0;
   text-decoration: none;
 }
-li {
-  list-style-type: none;
-}
-* {
-  &:focus {
-    outline: none;
-  }
-}
-
-/* font */
 body {
-  font-family: $font-serif;
-  font-size: 16px;
+  color: var(--primary-color);
+  background: #F7FFF7;
 }
-h1 {
-  font-size: 1.5em;
-  font-weight: normal;
-}
-p {
-  font-size: 1.1em;
-}
-input[type=text] {
-  font-size: 1em;
-}
-input[type=submit] {
-  font-family: $font-serif;
-  font-size: 1.1em;
-}
-
-/* color */
-h1,h2,h3,h4 {
-  color: $title-color;
-}
-p {
-  color: $text-color;
-}
-input[type=text] {
-  $orig-bk-color: #F9F9F9;
-  background: $orig-bk-color;
-  color: $primary-color;
-  &::placeholder {
-    color: #a2a2a5;
+body {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  header {
+    grid-row: 1 / span 1;
   }
-  &:hover {
-    background: darken($color: $orig-bk-color, $amount: 1%);
-  }
-  &:focus {
-    caret-color: darken($color: $orig-bk-color, $amount: 35%);
+  main {
+    position: relative;
+    grid-row: 2 / span 6;
   }
 }
-
-/* styles */
-input[type=submit] {
-  cursor: pointer;
-  border: none;
-  border-radius: 15px;
-  &:hover {
-    transform: translate(1px, 1px);
+header {
+  margin: 38px auto 0px auto;
+  width: 86%;
+  gap: 20px;
+  h1 {
+    grid-column: 1 / span 4;
+  }
+  #create-habit-builder-icon {
+    width: 30px;
+    height: 30px;
+    grid-column: 7 / span 1;
+    justify-self: end;
+  }
+  #account-icon {
+    width: 28.8px;
+    height: 28.8px;
+    grid-column: 8 / span 1;
+    justify-self: end;
+  }
+  &.grid {
+    align-items: center;
   }
 }
-
-#create-habit-tracker-form {
-  min-width: 480px;
-  width: 100%;
-  border: 35px solid $secondary-color;
-  border-radius: 5px;
-  margin: 10px auto;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: $bk-color;
-  text-align: center;
-  /*line-height: 30px;*/
-  p {
-    margin: 20px auto 10px auto;
-    /*line-height: 50px;*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.dropdown-input {
+  display: inline-block;
+  position: relative;
+  .dropdown-list {
+    z-index: 1;
+    position: absolute;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .dropdown-item {
+    cursor: pointer;
+  }
+}
+#create-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  .contents {
+    display: grid;
+    grid-row-gap: 42px;
+  }
+  --days-input-width: 80px;
+  input[name="days"] {
+    width: var(--days-input-width);
+  }
+  .days .dropdown-list {
+    width: var(--days-input-width);
+  }
+  --habit-input-width: 294px;
+  input[name="habit"] {
+    width: var(--habit-input-width);
+  }
+  .habit .dropdown-list {
+    width: var(--habit-input-width);
+  }
+  .dropdown-item {
+    text-align: center;
+    z-index: 1;
+    color: #F7FFF7;
+    height: 35px;
+    &:nth-child(odd) {
+      background: #FBB4B4;
+    }
+    &:nth-child(even) {
+      background: #FF9393;
+    }
   }
   input {
-    &[type=text] {
-      padding: 8px 10px;
-      border: none;
-      border-radius: 5px;
-      &:focus {
-        outline: none;
-      }
+    text-align: center;
+    padding-bottom: 5px;
+    color: #FF6B6B;
+    height: 28px;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    &[type="text"] {
+      border-bottom: 1px dashed var(--primary-color);
     }
-    &[name=days] {
-      width: 80px;
-    }
-    &[name=habit] {
-      width: 200px;
-    }
-    &[type=submit] {
-      padding: 12px 28px;
-      background: $primary-color;
-      color: #fcfcfe;
-      margin-top: 20px;
-      box-shadow: 1px 5px 8px 3px #ebe9fb;
+    &[type="submit"] {
+      display: block;
+      margin: 120px auto 0 auto;
+      color: #FF6B6B;
+      border: 3px solid #FF6B6B;
+      box-sizing: border-box;
+      border-radius: 30px;
+      width: 192px;
+      --height: 40px;
+      height: var(--height);
+      padding: 0;
     }
   }
+}
+main > section {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+.pre-quote {
+  transform: rotateY(-180deg);
 }
