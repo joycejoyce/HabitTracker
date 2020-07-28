@@ -1,26 +1,26 @@
-import { CreateForm } from "./create-form.js";
-import { Home } from "./home.js";
+import { CreatePage } from "./create-page.js";
+import { HomePage } from "./home-page.js";
 
 const React = require("react");
 const ReactDOM = require("react-dom");
 
 class ComponentRender {
   static renderAll() {
-    this.renderCreateForm();
-    this.renderHome();
+    this.renderCreatePage();
+    this.renderHomePage();
   }
 
-  static renderCreateForm() {
+  static renderCreatePage() {
     ReactDOM.render(
-      <CreateForm />,
-      document.querySelector("#create-form")
+      <CreatePage />,
+      document.querySelector("#create-page")
     );
   }
 
-  static renderHome() {
+  static renderHomePage() {
     ReactDOM.render(
-      <Home />,
-      document.querySelector("#home")
+      <HomePage />,
+      document.querySelector("#home-page")
     );
   }
 }

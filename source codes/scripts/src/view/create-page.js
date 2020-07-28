@@ -3,7 +3,7 @@ import FormValidator from "@dorith1989/form-validator";
 
 const React = require("react");
 
-class CreateForm extends React.Component {
+class CreatePage extends React.Component {
   constructor() {
     super();
 
@@ -160,4 +160,4 @@ class DropdownInput extends React.Component {
   }
 }
 
-export { CreateForm }
+export { CreatePage }
