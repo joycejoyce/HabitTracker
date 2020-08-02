@@ -32,10 +32,7 @@ class HomePage extends React.Component {
   }
 
   handleClickOnBtn(name) {
-    console.log({name});
-
     const checked = !this.state.inputs[name].checked;
-    console.log({checked});
     changeState(this, "inputs", name, "checked", checked);
   }
 
@@ -73,8 +70,6 @@ class CheckList extends React.Component {
             {
               Object.values(this.props.inputs).map(obj => {
                   const className = (obj.checked) ? "checked" : "";
-                  console.log({className});
-                  console.log("obj.name", obj.name);
                   return (
                     <button key={obj.name} className={className} onClick={() => this.props.onClick(obj.name)}>{obj.value}</button>
                   );

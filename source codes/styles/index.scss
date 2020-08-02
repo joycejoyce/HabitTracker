@@ -1,5 +1,6 @@
 :root {
   --primary-color: #1A535C;
+  --light-primary-color: #8FB7BD;
   --white: #F7FFF7;
   --red: #FF6B6B;
   --yellow: #FFE66D;
@@ -43,8 +44,25 @@ h1 {
   font-weight: normal;
 }
 body {
+  min-width: 375px;
   color: var(--primary-color);
   background: #F7FFF7;
+}
+@mixin abs-center($width, $height) {
+  width: $width;
+  height: $height;
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+}
+@mixin center-btn($width, $height) {
+  width: $width;
+  height: $height;
+  cursor: pointer;
+  display: block;
+  font-size: 0.71em;
+  margin-left: auto;
+  margin-right: auto;
 }
 body {
   display: grid;
@@ -241,6 +259,50 @@ main > section {
       color: var(--primary-color);
       &:before {
         right: 0;
+      }
+    }
+  }
+}
+.register {
+  @include abs-center(min-content, min-content);
+  button {
+    @include center-btn(130px, 44px);
+    border: none;
+    background: var(--green);
+    color: var(--white);
+    border-radius: 50px;
+    margin-top: 1.6em;
+  }
+}
+.fields {
+  display: grid;
+  grid-row-gap: 0.86em;
+  .field {
+    display: flex;
+    flex-direction: column;
+    label {
+      font-size: 0.42em;
+      letter-spacing: 0.1em;
+      color: var(--light-primary-color);
+    }
+    input {
+      border: none;
+      border-bottom: 1px solid var(--light-primary-color);
+      background: none;
+      width: 250px;
+      margin-top: 0.5em;
+      caret-color: var(--light-primary-color);
+      color: var(--primary-color);
+      padding-bottom: 3px;
+      font-size: 0.64em;
+      &:focus {
+        outline: none;
+      }
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover, 
+      &:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--primary-color);
+        -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
       }
     }
   }

@@ -1,0 +1,141 @@
+import React, { Component } from 'react';
+import { Auth } from "aws-amplify";
+import Validate from "./FormValidation.js";
+import { FormErrors } from "./FormErrors.js";
+
+class Register extends Component {
+  state = {
+    valid: false,
+    errors: {},
+    fields: {
+      username: {
+        label: "User Name",
+        name: "username",
+        value: "",
+        type: "text",
+        valid: false,
+        error: ""
+      },
+      email: {
+        label: "Email",
+        name: "email",
+        value: "",
+        type: "email",
+        valid: false,
+        error: ""
+      },
+      password: {
+        label: "Password",
+        name: "password",
+        value: "",
+        type: "password",
+        valid: false,
+        error: ""
+      },
+      confirmPassword: {
+        label: "Confirm Password",
+        name: "confirmPassword",
+        value: "",
+        type: "password",
+        valid: false,
+        error: ""
+      }
+    }
+  };
+
+  handleFieldChange = async (e) => {
+    const { name, value, type } = e.target;
+    const field = { name, value, type };
+    await this.changeValue(field);
+    this.validate(field);
+  }
+
+  changeValue = async (field) => {
+    const { name, value } = field;
+    await this.changeField(name, value, "value");
+  }
+
+  changeField = async (name, value, prop) => {
+    const fields = this.state.fields;
+    fields[name] = { ...this.state.fields[name], [prop]: value};
+    await this.setState({ fields });
+  }
+
+  validate = (field) => {
+    const error = Validate(field);
+    this.changeField(field.name, error, "error");
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    const valid = isFormValid();
+
+    const username = fields.username.value;
+    const password = fields.password.value;
+    const email = fields.email.value;
+    try {
+      const signUpResponse = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email
+        }
+      });
+      console.log({signUpResponse});
+    } catch(error) {
+      const err = !error.message ? { message: error } : error;
+      console.log({err});
+      this.setState({ 
+        errors: {
+          ...this.state.errors,
+          cognito: err
+        }
+      });
+    }
+  }
+
+  render() {
+    const onChange = this.handleFieldChange;
+    const fields = this.state.fields;
+    return (
+      <form className="register">
+        <FormError errors={this.state.errors} />
+        <div className="fields">
+          <Field ctrl={fields.username} onChange={onChange} />
+          <Field ctrl={fields.email} onChange={onChange} />
+          <Field ctrl={fields.password} onChange={onChange} />
+          <Field ctrl={fields.confirmPassword} onChange={onChange} />
+        </div>
+        <button onClick={(e) => this.handleSubmit(e)}>Register</button>
+      </form>
+    );
+  }
+}
+
+const fields = this.state.fields;
+  const valid = Object.keys(fields).reduce((acc, fieldName) => {
+    const isFieldValid = !(fields[fieldName].error);
+    return acc && isFieldValid;
+  }, true);
+
+class Field extends Component {
+  render() {
+    const { label, name, value, type, error } = this.props.ctrl;
+    const errors = { error };
+    const onChange = this.props.onChange;
+    return (
+      <div className="field">
+        <label htmlFor={name}>{label}</label>
+        <input type={type}
+          id={name}
+          name={name}
+          value={value}
+          onChange={(e) => onChange(e)} />
+        <FormErrors errors={errors} />
+      </div>
+    );
+  }
+}
+
+export default Register;
