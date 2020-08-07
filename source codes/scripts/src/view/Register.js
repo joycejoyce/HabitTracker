@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Auth } from "aws-amplify";
 import Validate from "./FormValidation.js";
+import Field from "./Field.js";
 import { FormErrors } from "./FormErrors.js";
 
 class Register extends Component {
   state = {
     valid: false,
+    registerSuccess: false,
     errors: {},
     fields: {
       username: {
@@ -69,8 +71,13 @@ class Register extends Component {
   async handleSubmit(e) {
     e.preventDefault();
 
-    const valid = isFormValid();
+    const valid = this.isFormValid();
+    console.log({valid});
+    if(!valid) {
+      return;
+    }
 
+    const fields = this.state.fields;
     const username = fields.username.value;
     const password = fields.password.value;
     const email = fields.email.value;
@@ -83,8 +90,9 @@ class Register extends Component {
         }
       });
       console.log({signUpResponse});
+      //To-do: jump to other page
     } catch(error) {
-      const err = !error.message ? { message: error } : error;
+      const err = error.message ? error.message : error;
       console.log({err});
       this.setState({ 
         errors: {
@@ -95,12 +103,21 @@ class Register extends Component {
     }
   }
 
+  isFormValid = () => {
+    const fields = this.state.fields;
+    const valid = Object.keys(fields).reduce((acc, fieldName) => {
+      const isFieldValid = !(fields[fieldName].error);
+      return acc && isFieldValid;
+    }, true);
+    return valid;
+  }
+
   render() {
     const onChange = this.handleFieldChange;
     const fields = this.state.fields;
     return (
       <form className="register">
-        <FormError errors={this.state.errors} />
+        <FormErrors errors={this.state.errors} />
         <div className="fields">
           <Field ctrl={fields.username} onChange={onChange} />
           <Field ctrl={fields.email} onChange={onChange} />
@@ -109,31 +126,6 @@ class Register extends Component {
         </div>
         <button onClick={(e) => this.handleSubmit(e)}>Register</button>
       </form>
-    );
-  }
-}
-
-const fields = this.state.fields;
-  const valid = Object.keys(fields).reduce((acc, fieldName) => {
-    const isFieldValid = !(fields[fieldName].error);
-    return acc && isFieldValid;
-  }, true);
-
-class Field extends Component {
-  render() {
-    const { label, name, value, type, error } = this.props.ctrl;
-    const errors = { error };
-    const onChange = this.props.onChange;
-    return (
-      <div className="field">
-        <label htmlFor={name}>{label}</label>
-        <input type={type}
-          id={name}
-          name={name}
-          value={value}
-          onChange={(e) => onChange(e)} />
-        <FormErrors errors={errors} />
-      </div>
     );
   }
 }

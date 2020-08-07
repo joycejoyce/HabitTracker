@@ -39,6 +39,9 @@ input[type="submit"] {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  &:focus {
+    outline: none;
+  }
 }
 h1 {
   font-weight: normal;
@@ -263,6 +266,34 @@ main > section {
     }
   }
 }
+.login {
+  @include abs-center(min-content, min-content);
+  button {
+    @include center-btn(130px, 44px);
+    border: none;
+    background: var(--yellow);
+    color: var(--primary-color);
+    border-radius: 50px;
+    margin-top: 1.6em;
+  }
+  .separator {
+    width: min-content;
+    display: flex;
+    margin: auto;
+    margin-top: 28px;
+    .text {
+      color: var(--light-primary-color);
+      font-size: 12px;
+      margin: 0 17px;
+    }
+    .line {
+      height: 1px;
+      width: 110px;
+      border-bottom: dashed 1px var(--light-primary-color);
+      margin: 0;
+    }
+  }
+}
 .register {
   @include abs-center(min-content, min-content);
   button {
@@ -306,4 +337,26 @@ main > section {
       }
     }
   }
+}
+.form-errors {
+  .error {
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    * {
+      color: var(--red);
+      margin: 3px;
+    }
+  }
+  --size: 0.5em;
+  img {
+    width: var(--size);
+    height: var(--size);
+  }
+  .msg {
+    font-size: var(--size);
+  }
+}
+.register > .form-errors {
+  margin: 10px auto;
 }

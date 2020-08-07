@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-habitbuilder-dev-203341-authRole",
+            "UnauthRoleArn": "arn:aws:iam::972985548510:role/amplify-habitbuilder-dev-203341-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::972985548510:role/amplify-habitbuilder-dev-203341-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "amplify-habitbuilder-dev-203341-deployment",
+            "UnauthRoleName": "amplify-habitbuilder-dev-203341-unauthRole",
+            "StackName": "amplify-habitbuilder-dev-203341",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:972985548510:stack/amplify-habitbuilder-dev-203341/e87283a0-d717-11ea-baaf-0ad08b3552b8",
+            "AmplifyAppId": "d96fdkxx7i6aq"
+        },
+        "categories": {
+            "auth": {
+                "habitbuilder7ce1fcaf": {}
+            }
+        }
+    }
+}
