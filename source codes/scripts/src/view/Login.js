@@ -3,6 +3,7 @@ import { Auth } from "aws-amplify";
 import Validate from "./FormValidation.js";
 import Field from "./Field.js";
 import { FormErrors } from "./FormErrors.js";
+import SocialLogin from "./SocialLogin.js";
 
 class Login extends Component {
   state = {
@@ -33,9 +34,12 @@ class Login extends Component {
     return (
       <form className="login">
           <FormErrors errors={this.state.errors} />
-          <div className="fields">
-            <Field ctrl={fields.username} onChange={onChange} />
-            <Field ctrl={fields.password} onChange={onChange} />
+          <div className="user-info">
+            <div className="fields">
+              <Field ctrl={fields.username} onChange={onChange} />
+              <Field ctrl={fields.password} onChange={onChange} />
+            </div>
+            <div className="forget-pwd">Forget Password?</div>
           </div>
           <button onClick={(e) => this.handleSubmit(e)}>Login</button>
           <div className="separator">
@@ -43,6 +47,9 @@ class Login extends Component {
             <div className="text">Or</div>
             <div className="line"></div>
           </div>
+          <SocialLogin name="facebook" />
+          <SocialLogin name="google" />
+          <SocialLogin name="twitter" />
       </form>
     );
   }
