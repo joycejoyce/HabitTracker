@@ -1,0 +1,58 @@
+{
+    "identityPoolName": "habitbuilderfbc55b8f_identitypool_fbc55b8f",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "habitbfbc55b8f",
+    "userPoolName": "habitbuilderfbc55b8f_userpool_fbc55b8f",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "userpoolClientLambdaRole": "habitbfbc55b8f_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "fbc55b8f",
+    "resourceName": "habitbuilderfbc55b8f",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "defaultSocial",
+    "hostedUI": true,
+    "hostedUIDomainName": "habitbuilderfbc55b8f-fbc55b8f",
+    "authProvidersUserPool": [
+        "Facebook"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5500/\"],\"LogoutURLs\":[\"http://localhost:5500/\"]}",
+    "userPoolGroupList": [],
+    "dependsOn": []
+}

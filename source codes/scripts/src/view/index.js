@@ -1,9 +1,17 @@
 import { ComponentRender } from "./component-render.js";
 import "../../../styles/index.scss";
-import Amplify from 'aws-amplify';
+//test remove import Amplify from 'aws-amplify';
 import userPoolConfig from '../config.json';
-import awsConfig from '../config.json';
+//test remove import awsConfig from '../config.json';
 
+//test add start
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from '../aws-exports.js';
+Amplify.configure(awsconfig);
+//test add end
+
+//test remove start
+/*
 const config = {
   ...awsConfig,
   Auth: {
@@ -14,9 +22,7 @@ const config = {
   }
 };
 
-Amplify.configure(config);
-
-/*Amplify.configure({
+Amplify.configure({
   Auth: {
     mandatorySignId: true,
     region: config.cognito.REGION,
@@ -24,6 +30,7 @@ Amplify.configure(config);
     userPoolWebClientId: config.cognito.APP_CLIENT_ID
   }
 });*/
+//test remove end
 
 window.addEventListener("load", () => {
   ComponentRender.renderAll();
