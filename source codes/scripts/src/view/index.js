@@ -6,12 +6,8 @@ import userPoolConfig from '../config.json';
 
 //test add start
 import Amplify, { Auth } from 'aws-amplify';
-import awsconfig from '../aws-exports.js';
-Amplify.configure(awsconfig);
-//test add end
+import awsConfig from '../aws-exports.js';
 
-//test remove start
-/*
 const config = {
   ...awsConfig,
   Auth: {
@@ -21,7 +17,11 @@ const config = {
     userPoolWebClientId: userPoolConfig.cognito.APP_CLIENT_ID
   }
 };
+Amplify.configure(awsConfig);
+//Amplify.configure(config);
 
+//test remove start
+/*
 Amplify.configure({
   Auth: {
     mandatorySignId: true,
