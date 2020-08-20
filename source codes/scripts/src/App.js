@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import "../../styles/index.scss";
+import Amplify, { Auth } from 'aws-amplify';
+import awsConfig from './aws-exports.js';
+import CreatePage from './view/Create.js';
+import Home from './view/Home.js';
+import LoginHome from './view/LoginHome.js';
+import Register from './view/Register.js';
+import Login from './view/Login.js';
+import NavBar from './view/NavBar.js';
+import NotFound404 from './view/NotFound404.js';
+
+Amplify.configure(awsConfig);
 
 class App extends Component {
   state = {
-    isAuthenticated: false,
     user: null
-  }
-
-  setAuthStatus = authenticated => {
-    this.setState({ isAuthenticated: authenticated });
-  }
-
-  setUser = user => {
-    this.setState({ user });
-  }
+  };
 
   render() {
-    const auth = {
-      isAuthenticated: this.state.isAuthenticated,
-      user: this.state.user,
-      setAuthStatus: this.setAuthStatus,
-      setUser: this.setUser
-    };
     return (
       <div className="App">
+        <NavBar user={this.state.user} />
         <Router>
-          <div>
-            <Navbar auth={auth} />
             <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} auth={auth} />} />
-              <Route exact path="/products" render={(props) => <Products {...props} auth={auth} />} />
-              <Route exact path="/admin" render={(props) => <ProductAdmin {...props} auth={auth} />} />
-              <Route exact path="/login" render={(props) => <LogIn {...props} auth={auth} />} />
-              <Route exact path="/register" render={(props) => <Register {...props} auth={auth} />} />
-              <Route exact path="/forgotpassword" render={(props) => <ForgotPassword {...props} auth={auth} />} />
-              <Route exact path="/forgotpasswordverification" render={(props) => <ForgotPasswordVerification {...props} auth={auth} />} />
-              <Route exact path="/changepassword" render={(props) => <ChangePassword {...props} auth={auth} />} />
-              <Route exact path="/changepasswordconfirmation" render={(props) => <ChangePasswordConfirm {...props} auth={auth} />} />
-              <Route exact path="/welcome" render={(props) => <Welcome {...props} auth={auth} />} />
+              <Route exact path="/" component={ Home } />
+              <Route path="/LoginHome" component={ LoginHome } />
+              <Route path="/Create" component={ CreatePage } />
+              <Route path="/Register" component={ Register } />
+              <Route path="/Login" component={ Login } />
+              <Route component={ NotFound404 } />
             </Switch>
-            <Footer />
-          </div>
         </Router>
       </div>
     );

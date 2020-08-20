@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     //如果有一個以上的檔案需要打包，可以傳陣列給entry
-    entry: './scripts/src/view/index.js',
+    entry: './scripts/src/index.js',
     output: {
         filename: './scripts/dist/bundle.js',
         path: path.resolve(__dirname, './')
