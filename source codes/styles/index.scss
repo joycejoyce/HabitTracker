@@ -2,27 +2,142 @@ $primary: #1A535C;
 $primaryLight1: #F7FFF7;
 $primaryLight2: #8FB7BD;
 
-body, html {
+$yellow: #FFE66D;
+
+$red: #FF6B6B;
+$lightRed1: #FF9393;
+$lightRed2: #FFF1F1;
+
+$serif: 'Vollkorn', serif;
+$sansSerif: 'Nanum Gothic', sans-serif;
+
+* {
+  font-family: $sansSerif;
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+body,html {
   margin: 0;
   height: 100vh;
 }
-
 body {
   background: $primaryLight1;
-  font-family: 'Nanum Gothic', sans-serif;
+}
+
+@mixin btn($width, $height, $color, $bkColor) {
+  width: $width;
+  height: $height;
+  color: $color;
+  background: $bkColor;
+  cursor: pointer;
+  border-radius: calc(#{$height/2});
+  font-size: 1.1em;
+}
+
+@mixin hoverBtnColor($color, $bkColor) {
+  &:hover {
+    color: $color;
+    background: $bkColor;
+  }
+}
+
+@mixin absCenter() {
+  position: absolute;
+  margin: auto;
+  top: 0; bottom: 0; right: 0; left: 0;
+}
+
+.debug1 {
+  background: red;
+}
+.debug2 {
+  outline: 3px solid blue;
+}
+.debug3 {
+  outline: 3px solid green;
 }
 
 .header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 1.5em;
+  align-items: center;
 
   &__logo {
     &__h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       font-weight: normal;
       color: $primary;
+      grid-column: 1 / span 2;
     }
   }
 
   &__navbar {
+    &__loginBtn {
+      @include btn(114px, 44px, $primary, $yellow);
+      grid-column: 5 / span 2;
+      border: none;
+    }
+    &__nav {
+      grid-column: 5 / span 2;
+    }
+    &__ul {
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      &__img {
+        width: 2em;
+        display: block;
+      }
+    }
+  }
+}
 
+.quote {
+  padding: 1.5em;
+  &__preQuote,&__postQuote {
+    width: 2em;
+  }
+  &__preQuote {
+    transform: rotate(180deg);
+  }
+  &__postQuote {
+    display: block;
+    margin-left: auto;
+  }
+  &__text {
+    padding: .5em .3em;
+    font-family: $serif;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  &__person {
+    font-family: $serif;
+    font-size: 1.1em;
+    text-align: center;
+    margin-top: 1em;
+  }
+}
+
+.home {
+  @include absCenter();
+  display: flex;
+  flex-flow: column wrap;
+  height: 400px;
+  justify-content: space-around;
+  align-items: center;
+  &__quote {
+    width: 85%;
+  }
+  &__createBtn {
+    @include btn(337px, 63px, $primary, transparent);
+    @include hoverBtnColor($primaryLight1, $lightRed1)
+    border: 3px solid $lightRed1;
+    padding: .8em 1em;
+    display: block;
+    margin: 0 auto;
   }
 }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Assets from './util/Assets.js'
+import User from './util/User.js'
 
 class Header extends Component {
   render() {
@@ -21,7 +23,8 @@ class Logo extends Component {
 
 class Navbar extends Component {
   render() {
-    if(!this.props.user) {
+    const isLogin = User.isLogin();
+    if(!isLogin) {
       return (
         <button className="header__navbar__loginBtn">Login</button>
       );
@@ -30,10 +33,10 @@ class Navbar extends Component {
       const createIconSrc = Assets.get({ name: 'plus_sign' });
       const accountIconSrc = Assets.get({ name: 'person' });
       return (
-        <nav >
-          <ul>
-            <li><img src={createIconSrc} alt="create habit builder" /></li>
-            <li><img src={accountIconSrc} alt="my account" /></li>
+        <nav className="header__navbar__nav">
+          <ul className="header__navbar__ul">
+            <li><img className="header__navbar__ul__img" src={createIconSrc} alt="create habit builder" /></li>
+            <li><img className="header__navbar__ul__img" src={accountIconSrc} alt="my account" /></li>
           </ul>
         </nav>
       )

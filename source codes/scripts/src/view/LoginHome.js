@@ -1,5 +1,5 @@
 import changeState from "@dorith1989/my-pkg";
-import Quote from "./Quote.js";
+import Quote from "./components/Quote.js";
 import React from "react";
 
 class LoginHome extends React.Component {
@@ -37,7 +37,7 @@ class LoginHome extends React.Component {
   render() {
     return(
       <div className="contents">
-        <Quote />
+        {/*<Quote />*/}
         <CheckList inputs={this.state.inputs} onClick={this.handleClickOnBtn} />
       </div>
     );
