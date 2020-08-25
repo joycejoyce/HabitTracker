@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import User from '../util/User.js';
 import Quote from './Quote.js';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import Create from './Create.js';
 
 class Home extends Component {
   render() {

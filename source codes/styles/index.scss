@@ -113,12 +113,14 @@ body {
     font-family: $serif;
     font-size: 1.5em;
     text-align: center;
+    color: $primary;
   }
   &__person {
     font-family: $serif;
     font-size: 1.1em;
     text-align: center;
     margin-top: 1em;
+    color: $primary;
   }
 }
 
@@ -134,7 +136,7 @@ body {
   }
   &__createBtn {
     @include btn(337px, 63px, $primary, transparent);
-    @include hoverBtnColor($primaryLight1, $lightRed1)
+    @include hoverBtnColor($primaryLight1, $lightRed1);
     border: 3px solid $lightRed1;
     padding: .8em 1em;
     display: block;
