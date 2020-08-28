@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import changeState from "@dorith1989/my-pkg";
 import FormValidator from "@dorith1989/form-validator";
+import DropdownInput from "./DropdownInput.js";
 
-class Create extends Component {
+class CreateHabitBuilder extends Component {
   state = {
     valid: false,
     inputs: {
@@ -71,14 +72,16 @@ class Create extends Component {
   render() {
     return (
       <form className="create">
-        <div className="create__line">
-          I will use <DropdownInput className="days" ctrl={this.state.inputs.days} onClick={this.handleClickOptions} onChange={this.handleChangeInput} /> days to
-        </div>
-        <div className="create__line">
-          build a daily habit:
-        </div>
-        <div className="create__line">
-          <DropdownInput className="habit" ctrl={this.state.inputs.habit} onClick={this.handleClickOptions} onChange={this.handleChangeInput} />
+        <div className="create__content">
+          <div className="create__content__line">
+            I will use <DropdownInput className="create__content__days" ctrl={this.state.inputs.days} onClick={this.handleClickOptions} onChange={this.handleChangeInput} /> days to
+          </div>
+          <div className="create__content__line">
+            build a daily habit:
+          </div>
+          <div className="create__content__line">
+            <DropdownInput className="create__content__habit" ctrl={this.state.inputs.habit} onClick={this.handleClickOptions} onChange={this.handleChangeInput} />
+          </div>
         </div>
         <input className="create__submit" type="submit" value="Start from today" onClick={this.state.eventHandlers.onSubmit} />
       </form>
@@ -86,4 +89,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default CreateHabitBuilder;

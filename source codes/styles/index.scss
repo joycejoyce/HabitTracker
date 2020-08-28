@@ -14,6 +14,7 @@ $sansSerif: 'Nanum Gothic', sans-serif;
 * {
   font-family: $sansSerif;
   text-decoration: none;
+  color: $primary;
 }
 li {
   list-style-type: none;
@@ -139,6 +140,42 @@ body {
     @include hoverBtnColor($primaryLight1, $lightRed1);
     border: 3px solid $lightRed1;
     padding: .8em 1em;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.create {
+  @include absCenter();
+  display: flex;
+  flex-flow: column wrap;
+  width: 294px;
+  height: 303px;
+  justify-content: space-between;
+  &__content {
+    margin: 0 auto;
+    width: max-content;
+    &__days {
+      width: 80px;
+    }
+    &__habit {
+      width: 294px;
+    }
+    &__line {
+      font-size: 1.75em;
+      .dropdownInput {
+        &__text {
+          border: none;
+          border-bottom: 1px solid dashed;
+          border-color: $primary;
+        }        
+      }
+    }
+  }
+  &__submit {
+    @include btn(192px, 40px, $red, transparent);
+    @include hoverBtnColor($primaryLight1, $lightRed1);
+    border: 3px solid $red;
     display: block;
     margin: 0 auto;
   }

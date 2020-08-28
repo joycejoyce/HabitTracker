@@ -12,7 +12,7 @@ import NotFound404 from './view/NotFound404.js';
 import User from './view/util/User.js';
 
 //temp
-import Create from './view/components/Create.js';
+import CreateHabitBuilder from './view/components/CreateHabitBuilder.js';
 
 Amplify.configure(awsConfig);
 
@@ -22,16 +22,15 @@ class App extends Component {
   };
 
   render() {
-    console.log("Enter App()");
     User.set(this.state.user);
     return (
       <div className="App">
         <Header />
         <Router>
             <Switch>
-              <Route exact path="/index.html" component={ Create } />
+              <Route exact path="/index.html" component={ CreateHabitBuilder } />
               <Route path="/LoginHome" component={ LoginHome } />
-              <Route path="/Create" component={ Create } />
+              <Route path="/CreateHabitBuilder" component={ CreateHabitBuilder } />
               <Route path="/Register" component={ Register } />
               <Route path="/Login" component={ Login } />
               <Route component={ NotFound404 } />
