@@ -49,7 +49,7 @@ class DropdownInput extends Component {
               value={this.props.ctrl.value}
               autoComplete="off"
             />
-            <div className={LIST_CLASSNAME} style={dropdownDisplay}>
+            <div className={LIST_CLASSNAME + " debug1"} style={dropdownDisplay}>
               {
                 this.props.ctrl.options.map(opt =>
                   (<div className={ITEM_CLASSNAME}
