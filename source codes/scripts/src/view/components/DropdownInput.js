@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import changeState from "@dorith1989/my-pkg";
 
 class DropdownInput extends Component {
   state = {
@@ -7,13 +8,15 @@ class DropdownInput extends Component {
     }
   }
 
-  handleClickInput = () => {
+  handleClickInput = async () => {
+    console.log("(before)display: " + this.state.dropdown.display);
     if(this.state.dropdown.display === "block") {
       changeState(this, "dropdown", "display", "none");
     }
     else {
       changeState(this, "dropdown", "display", "block");
     }
+    console.log("(after)display: " + this.state.dropdown.display);
   }
 
   handleInputChange = (e) => {
@@ -31,10 +34,10 @@ class DropdownInput extends Component {
       display: this.state.dropdown.display
     };
     const BASIC_CLASSNAME = "dropdownInput";
+    const className = this.props.ctrl.name + " " + BASIC_CLASSNAME;
     const TEXT_CLASSNAME = BASIC_CLASSNAME + "__text";
     const LIST_CLASSNAME = BASIC_CLASSNAME + "__list";
     const ITEM_CLASSNAME = BASIC_CLASSNAME + "__item";
-    const className = this.props.ctrl.name + " dropdownInput";
 
     return (
         <div className={className}>

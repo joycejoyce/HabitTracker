@@ -6,7 +6,8 @@ $yellow: #FFE66D;
 
 $red: #FF6B6B;
 $lightRed1: #FF9393;
-$lightRed2: #FFF1F1;
+$lightRed2: #FBB4B4;
+$lightRed3: #FFF1F1;
 
 $serif: 'Vollkorn', serif;
 $sansSerif: 'Nanum Gothic', sans-serif;
@@ -145,6 +146,52 @@ body {
   }
 }
 
+@mixin dropdownInput__text($prefix, $width, $height) {
+  .#{$prefix}__text {
+    border: none;
+    border-bottom: 1px dashed $primary;
+    background: transparent;
+    cursor: pointer;
+    width: $width;
+    height: $height;
+    font-size: .8em;
+    caret-color: $lightRed1;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+@mixin dropdownInput__item($prefix, $width, $height) {
+  .#{$prefix}__list {
+    position: absolute;
+    top: 1.5em;
+  }
+  .#{$prefix}__item {
+    color: $primaryLight1;
+    width: $width;
+    height: $height;
+    text-align: center;
+    padding: 3px;
+    &:nth-child(odd) {
+      background: $lightRed2;
+    }
+    &:nth-child(even) {
+      background: $lightRed1;
+    }
+  }
+}
+
+@mixin dropdownInput($name, $width, $height) {
+  .#{$name}.dropdownInput {
+    display: inline-block;
+    position: relative;
+    $prefix: dropdownInput;
+    @include dropdownInput__text($prefix, $width, $height);
+    @include dropdownInput__item($prefix, $width, $height);
+  }
+}
+
 .create {
   @include absCenter();
   display: flex;
@@ -155,21 +202,13 @@ body {
   &__content {
     margin: 0 auto;
     width: max-content;
-    &__days {
-      width: 80px;
-    }
-    &__habit {
-      width: 294px;
-    }
+    display: grid;
+    $height: 35px;
+    grid-gap: $height;
     &__line {
       font-size: 1.75em;
-      .dropdownInput {
-        &__text {
-          border: none;
-          border-bottom: 1px solid dashed;
-          border-color: $primary;
-        }        
-      }
+      @include dropdownInput(days, 80px, $height);
+      @include dropdownInput(habit, 294px, $height);
     }
   }
   &__submit {
