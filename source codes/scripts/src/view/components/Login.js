@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Auth, Hub } from "aws-amplify";
-import Validate from "./FormValidation.js";
+import Validate from "../util/FormValidator.js";
 import Field from "./Field.js";
-import { FormErrors } from "./FormErrors.js";
+import { FormErrors } from "../util/FormErrors.js";
 import SocialLogin from "./SocialLogin.js";
 
 class Login extends Component {

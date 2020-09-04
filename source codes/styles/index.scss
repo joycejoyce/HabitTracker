@@ -9,6 +9,8 @@ $lightRed1: #FF9393;
 $lightRed2: #FBB4B4;
 $lightRed3: #FFF1F1;
 
+$green: #4ECDC4;
+
 $serif: 'Vollkorn', serif;
 $sansSerif: 'Nanum Gothic', sans-serif;
 
@@ -36,6 +38,7 @@ body {
   cursor: pointer;
   border-radius: calc(#{$height/2});
   font-size: 1.1em;
+  border: none;
 }
 
 @mixin hoverBtnColor($color, $bkColor) {
@@ -136,9 +139,10 @@ body {
   &__quote {
     width: 85%;
   }
-  &__createBtn {
+  &__joinBtn {
     @include btn(337px, 63px, $primary, transparent);
     @include hoverBtnColor($primaryLight1, $lightRed1);
+    font-size: 1.3em;
     border: 3px solid $lightRed1;
     padding: .8em 1em;
     display: block;
@@ -222,5 +226,41 @@ body {
     border: 3px solid $red;
     display: block;
     margin: 0 auto;
+  }
+}
+
+.field {
+  margin: 15px auto;
+  display: flex;
+  flex-flow: column wrap;
+  width: 255px;
+  height: 60px;
+  justify-content: space-around;
+  &__label {
+    font-size: .75em;
+    color: $primaryLight2;
+    letter-spacing: 0.1em;
+  }
+  &__input {
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid $primaryLight2;
+    background: transparent;
+    font-size: 1.3em;
+    padding-bottom: 3px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.register {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  &__submit {
+    @include btn(130px, 44px, $primaryLight1, $green);
+    margin: 40px auto 0 auto;
   }
 }

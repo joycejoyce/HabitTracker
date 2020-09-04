@@ -8,8 +8,8 @@ class Home extends Component {
     return (
       <div className="home">
         <Quote className="home__quote" quoteText={Quote.TEXT.Aristotle_We} />
-        <Link to="/Create">
-          <button className="home__createBtn">Create my Habit Builder</button>
+        <Link to="/Register">
+          <button className="home__joinBtn">Join Habit Builder</button>
         </Link>
       </div>
     );

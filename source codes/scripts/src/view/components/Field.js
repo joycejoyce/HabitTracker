@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormErrors } from "./FormErrors.js";
+import { FormErrors } from "../util/FormErrors.js";
 
 class Field extends Component {
   render() {
@@ -8,8 +8,9 @@ class Field extends Component {
     const onChange = this.props.onChange;
     return (
       <div className="field">
-        <label htmlFor={name}>{label}</label>
-        <input type={type}
+        <label className="field__label" htmlFor={name}>{label}</label>
+        <input className="field__input" 
+          type={type}
           id={name}
           name={name}
           value={value}

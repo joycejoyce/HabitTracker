@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Auth } from "aws-amplify";
-import Validate from "./FormValidation.js";
+import Validate from "../util/FormValidator.js";
 import Field from "./Field.js";
-import { FormErrors } from "./FormErrors.js";
+import { FormErrors } from "../util/FormErrors.js";
 
 class Register extends Component {
   state = {
@@ -117,14 +117,14 @@ class Register extends Component {
     const fields = this.state.fields;
     return (
       <form className="register">
-        <FormErrors errors={this.state.errors} />
-        <div className="fields">
+        <FormErrors className="register__fromErrors" errors={this.state.errors} />
+        <div className="register__fields">
           <Field ctrl={fields.username} onChange={onChange} />
           <Field ctrl={fields.email} onChange={onChange} />
           <Field ctrl={fields.password} onChange={onChange} />
           <Field ctrl={fields.confirmPassword} onChange={onChange} />
         </div>
-        <button onClick={(e) => this.handleSubmit(e)}>Register</button>
+        <button className="register__submit" onClick={(e) => this.handleSubmit(e)}>Register</button>
       </form>
     );
   }

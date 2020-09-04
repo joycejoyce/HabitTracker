@@ -6,12 +6,10 @@ import awsConfig from './aws-exports.js';
 import Home from './view/components/Home.js';
 import Header from './view/Header.js';
 import LoginHome from './view/LoginHome.js';
-import Register from './view/Register.js';
-import Login from './view/Login.js';
+import Register from './view/components/Register.js';
+import Login from './view/components/Login.js';
 import NotFound404 from './view/NotFound404.js';
 import User from './view/util/User.js';
-
-//temp
 import CreateHabitBuilder from './view/components/CreateHabitBuilder.js';
 
 Amplify.configure(awsConfig);
@@ -28,7 +26,7 @@ class App extends Component {
         <Header />
         <Router>
             <Switch>
-              <Route exact path="/index.html" component={ CreateHabitBuilder } />
+              <Route exact path="/index.html" component={ Register } />
               <Route path="/LoginHome" component={ LoginHome } />
               <Route path="/CreateHabitBuilder" component={ CreateHabitBuilder } />
               <Route path="/Register" component={ Register } />
