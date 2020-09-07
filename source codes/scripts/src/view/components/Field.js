@@ -8,6 +8,7 @@ class Field extends Component {
     const onChange = this.props.onChange;
     return (
       <div className="field">
+        <FormErrors errors={errors} />
         <label className="field__label" htmlFor={name}>{label}</label>
         <input className="field__input" 
           type={type}
@@ -15,7 +16,6 @@ class Field extends Component {
           name={name}
           value={value}
           onChange={(e) => onChange(e)} />
-        <FormErrors errors={errors} />
       </div>
     );
   }

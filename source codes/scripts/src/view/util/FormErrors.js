@@ -4,11 +4,11 @@ function FormErrors(props) {
   const errors = props.errors;
   const styles = getStyles(errors);
   return (
-    <div className="form-errors" style={styles}>
+    <div className="formErrors" style={styles}>
       { Object.keys(errors).map(key => 
-        <div className="error" key={key}>
-          <img src="../../assets/warning.svg" alt="warning" />
-          <div className="msg">{errors[key]}</div>
+        <div className="formErrors__errors" key={key}>
+          <img className="formErrors__errors__img" src="../../assets/warning.svg" alt="warning" />
+          <div className="formErrors__errors__msg">{errors[key]}</div>
         </div>
       )}
     </div>

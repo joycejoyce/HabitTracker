@@ -130,7 +130,7 @@ class RegisterForm extends Component {
     const fields = this.state.fields;
     return (
       <form className="registerForm">
-        <FormErrors className="registerForm__fromErrors" errors={this.state.errors} />
+        <FormErrors errors={this.state.errors} />
         <div className="registerForm__fields">
           <Field ctrl={fields.username} onChange={onChange} />
           <Field ctrl={fields.email} onChange={onChange} />
