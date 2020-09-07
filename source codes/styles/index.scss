@@ -255,12 +255,48 @@ body {
   }
 }
 
-.register {
+.registerForm {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-around;
   &__submit {
     @include btn(130px, 44px, $primaryLight1, $green);
     margin: 40px auto 0 auto;
+  }
+}
+
+.socialRegister {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+  margin: 80px auto 0 auto;
+  &__text {
+    font-size: .88em;
+    color: $primaryLight2;
+  }
+  &__imgs {
+    display: flex;
+    width: 130px;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+}
+
+.loginSection {
+  display: flex;
+  width: 220px;
+  justify-content: space-around;
+  margin: 70px auto 0 auto;
+
+  * {
+    font-size: .88em;
+  }
+  &__text {
+    color: $primary;
+  }
+  &__login {
+    color: $green;
   }
 }

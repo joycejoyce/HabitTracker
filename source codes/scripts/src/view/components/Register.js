@@ -3,8 +3,21 @@ import { Auth } from "aws-amplify";
 import Validate from "../util/FormValidator.js";
 import Field from "./Field.js";
 import { FormErrors } from "../util/FormErrors.js";
+import Assets from "../util/Assets.js";
 
 class Register extends Component {
+  render() {
+    return(
+      <div className="register">
+        <RegisterForm />
+        <SocialRegister />
+        <LoginSection />
+      </div>
+    );
+  }
+}
+
+class RegisterForm extends Component {
   state = {
     valid: false,
     registerSuccess: false,
@@ -116,16 +129,46 @@ class Register extends Component {
     const onChange = this.handleFieldChange;
     const fields = this.state.fields;
     return (
-      <form className="register">
-        <FormErrors className="register__fromErrors" errors={this.state.errors} />
-        <div className="register__fields">
+      <form className="registerForm">
+        <FormErrors className="registerForm__fromErrors" errors={this.state.errors} />
+        <div className="registerForm__fields">
           <Field ctrl={fields.username} onChange={onChange} />
           <Field ctrl={fields.email} onChange={onChange} />
           <Field ctrl={fields.password} onChange={onChange} />
           <Field ctrl={fields.confirmPassword} onChange={onChange} />
         </div>
-        <button className="register__submit" onClick={(e) => this.handleSubmit(e)}>Register</button>
+        <button className="registerForm__submit" onClick={(e) => this.handleSubmit(e)}>Register</button>
       </form>
+    );
+  }
+}
+
+class SocialRegister extends Component {
+  render() {
+    const googleSrc = Assets.get({name: "google"});
+    const twitterSrc = Assets.get({name: "twitter"});
+    const fbSrc = Assets.get({name: "facebook"});
+
+    return (
+      <div className="socialRegister">
+        <div className="socialRegister__text">Or you can join with</div>
+        <div className="socialRegister__imgs">
+          <img src={googleSrc} />
+          <img src={twitterSrc} />
+          <img src={fbSrc} />
+        </div>
+      </div>
+    );
+  }
+}
+
+class LoginSection extends Component {
+  render() {
+    return (
+      <div className="loginSection">
+        <div className="loginSection__text">Already have an account?</div>
+        <div className="loginSection__login">Login</div>
+      </div>
     );
   }
 }
