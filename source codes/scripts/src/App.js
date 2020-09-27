@@ -1,39 +1,60 @@
+// react
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import "../../styles/index.scss";
-import Amplify, { Auth } from 'aws-amplify';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// auth-related
+import Amplify from 'aws-amplify';
 import awsConfig from './aws-exports.js';
-import Home from './view/components/Home.js';
+
+// components
 import Header from './view/Header.js';
 import LoginHome from './view/LoginHome.js';
-import Register from './view/components/Register.js';
+import Register from './view/components/Register/Register.js';
 import Login from './view/components/Login.js';
 import NotFound404 from './view/NotFound404.js';
-import User from './view/util/User.js';
 import CreateHabitBuilder from './view/components/CreateHabitBuilder.js';
+import CheckEmail from './view/components/CheckEmail.js';
+
+// scss
+import "../../styles/index.scss";
 
 Amplify.configure(awsConfig);
 
 class App extends Component {
   state = {
+    isAuenticated: false,
     user: null
   };
 
+  setAuthStatus = (authenticated) => {
+    this.setState({ isAuthenticated: authenticated });
+  }
+
+  setUser = (user) => {
+    this.setState({ user });
+  }
+
   render() {
-    User.set(this.state.user);
+    const authProps = {
+      isAuthenticated: this.state.isAuthenticated,
+      user: this.state.user,
+      setAuthStatus: this.setAuthStatus,
+      setUser: this.setUser
+    };
+
     return (
       <div className="App">
-        <Header />
-        <Router>
+        <Header auth={authProps} />
+          <Router>
             <Switch>
-              <Route exact path="/index.html" component={ Register } />
-              <Route path="/LoginHome" component={ LoginHome } />
-              <Route path="/CreateHabitBuilder" component={ CreateHabitBuilder } />
-              <Route path="/Register" component={ Register } />
-              <Route path="/Login" component={ Login } />
+              <Route exact path="/" component={ Register } />
+              <Route exact path="/checkEmail" component={ CheckEmail } />
+              <Route path="/loginhome" component={ LoginHome } />
+              <Route path="/createHabitBuilder" component={ CreateHabitBuilder } />
+              <Route path="/login" component={ Login } />
               <Route component={ NotFound404 } />
             </Switch>
-        </Router>
+          </Router>
       </div>
     );
   }

@@ -54,6 +54,15 @@ body {
   top: 0; bottom: 0; right: 0; left: 0;
 }
 
+@mixin autoFillBackgroundColor($color) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+      -webkit-box-shadow: 0 0 0 30px $color inset !important;
+  }
+}
+
 .debug1 {
   background: red;
 }
@@ -244,7 +253,7 @@ body {
     border: none;
     border-bottom: 1px solid $primaryLight2;
     background: transparent;
-    font-size: 1.3em;
+    font-size: 1.1em;
     padding-bottom: 3px;
     &:focus {
       outline: none;
@@ -276,6 +285,7 @@ body {
     @include btn(130px, 44px, $primaryLight1, $green);
     margin: 40px auto 0 auto;
   }
+  @include autoFillBackgroundColor($primaryLight1);
 }
 
 .socialRegister {
