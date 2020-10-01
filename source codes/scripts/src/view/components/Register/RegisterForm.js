@@ -92,7 +92,7 @@ class RegisterForm extends Component {
       });
       console.log({signUpResponse});
 
-      this.props.history.push("/checkemail");
+      this.props.history.push("/checkEmail");
     } catch(error) {
       const err = error.message ? error.message : error;
       console.log({err});

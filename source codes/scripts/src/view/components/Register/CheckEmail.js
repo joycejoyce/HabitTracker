@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Assets from "../util/Assets.js";
+import Assets from "../../util/Assets.js";
 
 class CheckEmail extends Component {
   getStarSrc = () => {
@@ -7,6 +7,8 @@ class CheckEmail extends Component {
   }
 
   render() {
+    console.log("(CheckEmail)email", email);
+
     const starSrc = this.getStarSrc();
     
     return(
@@ -18,7 +20,7 @@ class CheckEmail extends Component {
           <div className="lineOfText">A verification link has been</div>
           <div className="lineOfText">sent to your email account</div>
           <div className="lineOfText">A verification link has been</div>
-          <div className="email">xxx@gmail.com</div>
+    <div className="email">{email.value}</div>
         </div>
       </div>
     );

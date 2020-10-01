@@ -13,7 +13,7 @@ import Register from './view/components/Register/Register.js';
 import Login from './view/components/Login.js';
 import NotFound404 from './view/NotFound404.js';
 import CreateHabitBuilder from './view/components/CreateHabitBuilder.js';
-import CheckEmail from './view/components/CheckEmail.js';
+import CheckEmail from './view/components/Register/CheckEmail.js';
 
 // scss
 import "../../styles/index.scss";
@@ -23,7 +23,8 @@ Amplify.configure(awsConfig);
 class App extends Component {
   state = {
     isAuenticated: false,
-    user: null
+    user: null,
+    user_signUp: null
   };
 
   setAuthStatus = (authenticated) => {
@@ -34,12 +35,17 @@ class App extends Component {
     this.setState({ user });
   }
 
+  setUser_signUp = (user_signUp) => {
+    this.setState({ user_signUp });
+  }
+
   render() {
     const authProps = {
       isAuthenticated: this.state.isAuthenticated,
       user: this.state.user,
       setAuthStatus: this.setAuthStatus,
-      setUser: this.setUser
+      setUser: this.setUser,
+      setUser_signUp: this.setUser_signUp
     };
 
     return (
@@ -49,7 +55,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={ Register } />
               <Route exact path="/checkEmail" component={ CheckEmail } />
-              <Route path="/loginhome" component={ LoginHome } />
+              <Route path="/loginHome" component={ LoginHome } />
               <Route path="/createHabitBuilder" component={ CreateHabitBuilder } />
               <Route path="/login" component={ Login } />
               <Route component={ NotFound404 } />
