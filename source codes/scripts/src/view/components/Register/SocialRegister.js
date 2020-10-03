@@ -3,7 +3,17 @@ import { Auth } from "aws-amplify";
 import Assets from "../../util/Assets.js";
 
 class SocialRegister extends Component {
+  signIn = async () => {
+    console.log("Enter signIn");
+
+    const response = await Auth.federatedSignIn();
+    console.log({response});
+    
+    console.log("Exit signIn");
+  }
+
   render() {
+    console.log("Enter SocialRegister");
     const googleSrc = Assets.get({name: "google"});
     const twitterSrc = Assets.get({name: "twitter"});
     const fbSrc = Assets.get({name: "facebook"});
@@ -14,7 +24,7 @@ class SocialRegister extends Component {
         <div className="socialRegister__imgs">
           <img src={googleSrc} />
           <img src={twitterSrc} />
-          <img src={fbSrc} onClick={() => Auth.federatedSignIn()} />
+          <img src={fbSrc} onClick={this.signIn} />
         </div>
       </div>
     );
