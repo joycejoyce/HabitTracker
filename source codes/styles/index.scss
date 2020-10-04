@@ -323,3 +323,30 @@ body {
     color: $green;
   }
 }
+
+.checkEmail {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 235px;
+  .title {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 82px;
+    img.mail {
+      width: 40px;
+      height: 40px;
+    }
+    h1 {
+      font-size: 1.75em;
+    }
+  }
+  .line {
+    width: 336px;
+    height: 1px;
+    border-bottom: 1px solid $primaryLight2;
+  }
+}

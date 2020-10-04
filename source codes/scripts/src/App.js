@@ -53,11 +53,11 @@ class App extends Component {
         <Header auth={authProps} />
           <Router>
             <Switch>
-              <Route exact path="/" component={ Register } />
-              <Route exact path="/checkEmail" component={ CheckEmail } />
+              <Route exact path="/" component={ CheckEmail } />
               <Route path="/loginHome" component={ LoginHome } />
               <Route path="/createHabitBuilder" component={ CreateHabitBuilder } />
               <Route path="/login" component={ Login } />
+              <Route path="/register" component={ Register } />
               <Route component={ NotFound404 } />
             </Switch>
           </Router>
