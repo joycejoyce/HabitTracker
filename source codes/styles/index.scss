@@ -11,6 +11,8 @@ $lightRed3: #FFF1F1;
 
 $green: #4ECDC4;
 
+$blue: #55ACEE;
+
 $serif: 'Vollkorn', serif;
 $sansSerif: 'Nanum Gothic', sans-serif;
 
@@ -61,6 +63,15 @@ body {
   input:-webkit-autofill:active  {
       -webkit-box-shadow: 0 0 0 30px $color inset !important;
   }
+}
+
+@mixin flex_centerItems($width, $height) {
+  width: $width;
+  height: $height;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .debug1 {
@@ -321,32 +332,43 @@ body {
   }
   &__login {
     color: $green;
+    cursor: pointer;
   }
 }
 
 .checkEmail {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: center;
-  height: 235px;
-  .title {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 82px;
-    img.mail {
-      width: 40px;
-      height: 40px;
+  $width: 336px;
+  @include absCenter();
+  @include flex_centerItems($width, 412px);
+  .contents {
+    @include flex_centerItems($width, 235px);
+    .title {
+      @include flex_centerItems($width, 82px);
+      img.mail {
+        width: 40px;
+        height: 40px;
+      }
+      h1 {
+        font-size: 1.75em;
+      }
     }
-    h1 {
-      font-size: 1.75em;
+    .line {
+      width: 336px;
+      height: 1px;
+      border-bottom: 1px solid $primaryLight2;
+    }
+    .text {
+      @include flex_centerItems($width, 93px);
+      font-size: 1.2em;
+      .email {
+        color: $green;
+        /*font-weight: bold;*/
+        font-family: $serif;
+        /*font-size: 1.5em;*/
+      }
     }
   }
-  .line {
-    width: 336px;
-    height: 1px;
-    border-bottom: 1px solid $primaryLight2;
+  .goHomeBtn {
+    @include btn(275px, 61px, $primary, $yellow);
   }
 }

@@ -7,6 +7,7 @@ import Amplify from 'aws-amplify';
 import awsConfig from './aws-exports.js';
 
 // components
+import Home from './view/components/Home.js';
 import Header from './view/Header.js';
 import LoginHome from './view/LoginHome.js';
 import Register from './view/components/Register/Register.js';
@@ -53,11 +54,13 @@ class App extends Component {
         <Header auth={authProps} />
           <Router>
             <Switch>
-              <Route exact path="/" component={ CheckEmail } />
+              <Route exact path="/" component={ Login } />
               <Route path="/loginHome" component={ LoginHome } />
               <Route path="/createHabitBuilder" component={ CreateHabitBuilder } />
               <Route path="/login" component={ Login } />
               <Route path="/register" component={ Register } />
+              <Route path="/checkEmail" component={ CheckEmail } />
+              <Route path="/home" component={ Home } />
               <Route component={ NotFound404 } />
             </Switch>
           </Router>

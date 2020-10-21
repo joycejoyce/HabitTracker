@@ -21,8 +21,6 @@ class Register extends Component {
         <RegisterForm />
         <SocialRegister />
         <LoginSection />
-        <button onClick={this.checkUser}>Current User</button>
-        <button onClick={this.signOut}>Sign Out</button>
       </div>
     );
   }

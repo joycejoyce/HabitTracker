@@ -36,7 +36,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "aws-amplify": "^3.0.22",
+    "aws-amplify": "^3.3.3",
+    "aws-cli-js": "^2.0.6",
     "aws-sdk": "^2.738.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
