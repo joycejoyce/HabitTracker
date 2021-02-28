@@ -3,12 +3,12 @@
 
 const awsmobile = {
     "aws_project_region": "ap-southeast-1",
-    "aws_cognito_identity_pool_id": "ap-southeast-1:59939387-63cb-45e3-b07f-79f17cdc2e1e",
+    "aws_cognito_identity_pool_id": "ap-southeast-1:aa2fcfae-3c35-4764-b307-58282fbbaf5d",
     "aws_cognito_region": "ap-southeast-1",
-    "aws_user_pools_id": "ap-southeast-1_7zlTQ194B",
-    "aws_user_pools_web_client_id": "reqdr44g8vc8crkflao81c908",
+    "aws_user_pools_id": "ap-southeast-1_uvJXNRkXj",
+    "aws_user_pools_web_client_id": "6e76hs6ts0be0nt4f8o1mqn3ss",
     "oauth": {
-        "domain": "habitbuilder0733132a-0733132a-dev.auth.ap-southeast-1.amazoncognito.com",
+        "domain": "habitbuilder4a259251-4a259251-dev.auth.ap-southeast-1.amazoncognito.com",
         "scope": [
             "phone",
             "email",
@@ -16,8 +16,8 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "http://localhost:3000/,https://habit-builder-2.herokuapp.com/",
-        "redirectSignOut": "http://localhost:3000/,https://habit-builder-2.herokuapp.com/",
+        "redirectSignIn": "https://habit-builder-2.herokuapp.com/,http://localhost:3000/",
+        "redirectSignOut": "https://habit-builder-2.herokuapp.com/,http://localhost:3000/",
         "responseType": "code"
     },
     "federationTarget": "COGNITO_USER_POOLS"

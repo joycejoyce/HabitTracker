@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "habitbuilder0733132a_identitypool_0733132a",
+    "identityPoolName": "habitbuilder4a259251_identitypool_4a259251",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "habitb0733132a",
-    "userPoolName": "habitbuilder0733132a_userpool_0733132a",
+    "resourceNameTruncated": "habitb4a259251",
+    "userPoolName": "habitbuilder4a259251_userpool_4a259251",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "habitb0733132a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "habitb4a259251_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "0733132a",
-    "resourceName": "habitbuilder0733132a",
+    "sharedId": "4a259251",
+    "resourceName": "habitbuilder4a259251",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -47,14 +47,14 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "habitbuilder0733132a-0733132a",
+    "hostedUIDomainName": "habitbuilder4a259251-4a259251",
     "authProvidersUserPool": [
         "Facebook"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://habit-builder-2.herokuapp.com/\",\"http://localhost:3000/\"],\"LogoutURLs\":[\"https://habit-builder-2.herokuapp.com/\",\"http://localhost:3000/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
+    "dependsOn": []
 }

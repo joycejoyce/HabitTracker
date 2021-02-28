@@ -1,6 +1,6 @@
 {
   "auth": {
-    "habitbuilder0733132a": {
+    "habitbuilder4a259251": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

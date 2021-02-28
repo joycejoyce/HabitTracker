@@ -4,5 +4,5 @@
 ## Setup development environment <a name="setup-dev-env"></a>
 ### Install dependencies
 `npm i`
-### Run App
-`npx http-server . -c-1`
+### Run App (會run在server.js裡面設定的port上)
+`node server.js`
