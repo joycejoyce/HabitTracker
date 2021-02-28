@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "habitbuilderfbc55b8f_identitypool_fbc55b8f",
+    "identityPoolName": "habitbuilder0733132a_identitypool_0733132a",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "habitbfbc55b8f",
-    "userPoolName": "habitbuilderfbc55b8f_userpool_fbc55b8f",
+    "resourceNameTruncated": "habitb0733132a",
+    "userPoolName": "habitbuilder0733132a_userpool_0733132a",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -20,7 +20,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientGenerateSecret": true,
+    "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
         "email"
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "habitbfbc55b8f_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "habitb0733132a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "fbc55b8f",
-    "resourceName": "habitbuilderfbc55b8f",
+    "sharedId": "0733132a",
+    "resourceName": "habitbuilder0733132a",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -47,12 +47,14 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "habitbuilderfbc55b8f-fbc55b8f",
+    "hostedUIDomainName": "habitbuilder0733132a-0733132a",
     "authProvidersUserPool": [
         "Facebook"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5500/\"],\"LogoutURLs\":[\"http://localhost:5500/\"]}",
     "userPoolGroupList": [],
-    "dependsOn": []
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "dependsOn": [],
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
 }
