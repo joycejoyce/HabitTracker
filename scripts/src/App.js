@@ -19,6 +19,8 @@ import CheckEmail from './view/components/Register/CheckEmail.js';
 // scss
 import "../../styles/index.scss";
 
+console.log({awsConfig});
+
 Amplify.configure(awsConfig);
 
 class App extends Component {

@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "habitbuilder4a259251_identitypool_4a259251",
+    "identityPoolName": "habitbuilderd2e59baf_identitypool_d2e59baf",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "habitb4a259251",
-    "userPoolName": "habitbuilder4a259251_userpool_4a259251",
+    "resourceNameTruncated": "habitbd2e59baf",
+    "userPoolName": "habitbuilderd2e59baf_userpool_d2e59baf",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "habitb4a259251_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "habitbd2e59baf_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "4a259251",
-    "resourceName": "habitbuilder4a259251",
+    "sharedId": "d2e59baf",
+    "resourceName": "habitbuilderd2e59baf",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -47,12 +47,12 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "habitbuilder4a259251-4a259251",
+    "hostedUIDomainName": "habitbuilderd2e59baf-d2e59baf",
     "authProvidersUserPool": [
         "Facebook"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://habit-builder-2.herokuapp.com/\",\"http://localhost:3000/\"],\"LogoutURLs\":[\"https://habit-builder-2.herokuapp.com/\",\"http://localhost:3000/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://habit-builder-2.herokuapp.com/\"],\"LogoutURLs\":[\"https://habit-builder-2.herokuapp.com/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
